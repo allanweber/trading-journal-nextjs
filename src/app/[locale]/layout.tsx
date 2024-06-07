@@ -1,3 +1,4 @@
+import LocaleSelect from '@/components/LocaleSelect';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
@@ -21,9 +22,16 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale}>
-      <body className={inter.className}>
+      <body
+        className={`${inter.className} flex flex-col items-center mt-10 gap-4`}
+      >
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <header>
+            <nav>
+              <LocaleSelect />
+            </nav>
+          </header>
+          <main>{children}</main>
         </NextIntlClientProvider>
       </body>
     </html>
