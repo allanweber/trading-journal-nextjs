@@ -1,6 +1,7 @@
+import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
 
 export default function Page() {
   const t = useTranslations();
-  return <h1>{t('hello')}</h1>;
+  return <Button>{t('hello')}</Button>;
 }

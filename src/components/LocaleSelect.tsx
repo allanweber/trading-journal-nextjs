@@ -2,15 +2,19 @@
 
 import { useTranslations } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
+import { Icons } from './Icons';
+import { ToggleGroup, ToggleGroupItem } from './ui/toggle-group';
 
 const locales = [
   {
     locale: 'en',
     label: 'english',
+    Icon: <Icons.UK />,
   },
   {
     locale: 'pt-Br',
     label: 'portuguese',
+    Icon: <Icons.Brazil />,
   },
 ];
 
@@ -23,8 +27,7 @@ export default function LocaleSelect() {
     (locale) => locale.locale === pathname.split('/')[1]
   );
 
-  const handleChange = (e: any) => {
-    const nextLocale = e.target.value;
+  const handleChange = (nextLocale: string) => {
     if (!pathname) router.push('/');
     const segments = pathname.split('/');
     segments[1] = nextLocale;
@@ -32,16 +35,22 @@ export default function LocaleSelect() {
   };
 
   return (
-    <select
+    <ToggleGroup
+      type="single"
+      size="sm"
+      onValueChange={handleChange}
       value={currentLocale?.locale}
-      onChange={handleChange}
-      className="border border-gray-300 rounded-md"
     >
       {locales.map((locale) => (
-        <option key={locale.locale} value={locale.locale}>
-          {t(locale.label)}
-        </option>
+        <ToggleGroupItem
+          key={locale.locale}
+          value={locale.locale}
+          aria-label={locale.label}
+        >
+          {locale.Icon}
+          <span className="sr-only">{t(locale.label)}</span>
+        </ToggleGroupItem>
       ))}
-    </select>
+    </ToggleGroup>
   );
 }
