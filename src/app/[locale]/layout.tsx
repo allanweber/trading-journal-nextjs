@@ -30,7 +30,7 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased flex flex-col items-center mt-10 gap-4',
+          'bg-background font-sans antialiased flex flex-col items-center mt-10 gap-4',
           fontSans.variable
         )}
       >

@@ -2,5 +2,9 @@
   "hello": "hello world",
   "trading": "Trading",
   "english": "English",
-  "portuguese": "Portuguese"
+  "portuguese": "Portuguese",
+  "toggle-theme": "Toggle theme",
+  "dark": "Dark",
+  "light": "Light",
+  "system": "System"
 }

@@ -2,5 +2,9 @@
   "hello": "Olá Mundo!",
   "trading": "Negociação",
   "english": "Inglês",
-  "portuguese": "Português"
+  "portuguese": "Português",
+  "toggle-theme": "Alterar Tema",
+  "dark": "Escuro",
+  "light": "Claro",
+  "system": "Sistema"
 }
