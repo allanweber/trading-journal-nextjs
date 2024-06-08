@@ -1,11 +1,17 @@
 import LocaleSelect from '@/components/LocaleSelect';
+import { ModeToggle } from '@/components/ModeToggle';
+import { cn } from '@/lib/utils';
+import { ThemeProvider } from '@/providers/theme';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { Inter } from 'next/font/google';
+import { Inter as FontSans } from 'next/font/google';
 import '../globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const fontSans = FontSans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+});
 
 export const metadata: Metadata = {
   title: 'Trading Journal',
@@ -21,18 +27,31 @@ export default async function RootLayout({
 }) {
   const messages = await getMessages();
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body
-        className={`${inter.className} flex flex-col items-center mt-10 gap-4`}
+        className={cn(
+          'min-h-screen bg-background font-sans antialiased flex flex-col items-center mt-10 gap-4',
+          fontSans.variable
+        )}
       >
-        <NextIntlClientProvider messages={messages}>
-          <header>
-            <nav>
-              <LocaleSelect />
-            </nav>
-          </header>
-          <main>{children}</main>
-        </NextIntlClientProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NextIntlClientProvider messages={messages}>
+            <header className="flex flex-col items-center gap-4">
+              <div>
+                <ModeToggle />
+              </div>
+              <nav>
+                <LocaleSelect />
+              </nav>
+            </header>
+            <main>{children}</main>
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
