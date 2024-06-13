@@ -19,7 +19,7 @@
     "sign-up": "Cadastrar",
     "hero-message": "<title>Trading Journal</title> uma ferramenta completa para <traders>Traders</traders> e <investors>Investidores</investors>",
     "hero-description": "Acompanhe suas negociações, analise seu desempenho e melhore seus resultados",
-    "get-started": "Começe Agora",
+    "get-started": "Comece Agora",
     "start-free-trial": "Comece seu teste gratuito",
     "custom-dashboards": "Dashboards",
     "custom-dashboards-description": "Crie dashboards personalizados para analisar seu desempenho",
@@ -29,16 +29,16 @@
     "chart-performance-description": "Acompanhe seu desempenho com gráficos e relatórios detalhados",
     "any-market": "Qualquer Mercado",
     "any-market-description": "Qualquer mercado, seja ações, opções, futuros, forex ou criptomoedas, em qualquer moeda",
-    "features-title": "Muitos <great>Otimos Recursos</great>",
+    "features-title": "Muitos <great>Recursos Incríveis</great>",
     "pricing-title": "Recebe Acesso <unlimited>Ilimitado</unlimited>",
     "pricing-description": "Tenha acesso a todos os recursos e negociações ilimitadas por uma pequena taxa mensal ou até mesmo de graça.",
     "features-cards": {
       "charts": {
-        "title": "Graficos de Desempenho",
+        "title": "Gráficos de Desempenho",
         "description": "Analise seu desempenho com gráficos e métricas detalhadas conectadas aos seus gráficos de negociações."
       },
       "portfolio": {
-        "title": "Graficos de Portfólios",
+        "title": "Gráficos de Portfólios",
         "description": "Crie vários portfólios e gerencie suas negociações em um só lugar para qualquer mercado ou moeda."
       },
       "ai": {
@@ -47,7 +47,7 @@
       }
     },
     "features-list": {
-      "multi": "Multiplos Portfólios",
+      "multi": "Múltiplos Portfólios",
       "unlimited": "Trades ilimitadas",
       "performance": "Gráficos de desempenho",
       "stock": "Ações",
