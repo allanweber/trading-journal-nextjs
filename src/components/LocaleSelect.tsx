@@ -19,7 +19,7 @@ const locales = [
 ];
 
 export default function LocaleSelect() {
-  const t = useTranslations();
+  const t = useTranslations('locale');
   const router = useRouter();
   const pathname = usePathname();
 

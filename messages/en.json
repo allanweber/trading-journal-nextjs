@@ -1,10 +1,100 @@
 {
-  "hello": "hello world",
   "trading": "Trading",
-  "english": "English",
-  "portuguese": "Portuguese",
-  "toggle-theme": "Toggle theme",
-  "dark": "Dark",
-  "light": "Light",
-  "system": "System"
+  "locale": {
+    "english": "English",
+    "portuguese": "Portuguese"
+  },
+  "theme": {
+    "toggle-theme": "Toggle theme",
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
+  },
+  "site": {
+    "features": "Features",
+    "advanced-features": "Advanced Features",
+    "pricing": "Pricing",
+    "FAQ": "FAQ",
+    "sign-in": "Sign In",
+    "sign-up": "Sign Up",
+    "hero-message": "<title>Trading Journal</title> the complete app for <traders>Traders</traders> and <investors>Investors</investors>",
+    "hero-description": "Keep track of your trades, analyze your performance and improve your results",
+    "get-started": "Get Started",
+    "start-free-trial": "Start Free Trial",
+    "custom-dashboards": "Custom Dashboards",
+    "custom-dashboards-description": "Create custom dashboards with the metrics that matter to you",
+    "responsive-design": "Responsive Design",
+    "responsive-design-description": "Access your data from any device, anywhere. Mobile, tablet and desktop.",
+    "chart-performance": "Chart & Performance",
+    "chart-performance-description": "Analyze your performance with detailed charts and metrics",
+    "any-market": "Any Market",
+    "any-market-description": "Multiple markets and any currency, we have you covered.",
+    "features-title": "Many <great>Great Features</great>",
+    "pricing-title": "Get <unlimited>Unlimited</unlimited> Access",
+    "pricing-description": "Get access to all features and unlimited trades for a low monthly fee or even for free.",
+    "features-cards": {
+      "charts": {
+        "title": "Charts & Graphs",
+        "description": "Analyze your performance with detailed charts and metrics connected to your trades charts."
+      },
+      "portfolio": {
+        "title": "Portfolio Management",
+        "description": "Create multiple portfolios and manage your trades in one place for any market or currency."
+      },
+      "ai": {
+        "title": "AI-Powered insights",
+        "description": "Get insights and suggestions to improve your trading performance based on your previous trades."
+      }
+    },
+    "features-list": {
+      "multi": "Multiple Portfolios",
+      "unlimited": "Unlimited Trades",
+      "performance": "Performance Charts",
+      "stock": "Stock",
+      "futures": "Futures",
+      "forex": "Forex",
+      "cryptocurrency": "Cryptocurrency",
+      "dividends": "Dividends",
+      "multi-currency": "Multi Currency",
+      "image-storage": "Image Storage"
+    },
+    "free": {
+      "title": "Free",
+      "description": "Our free plan includes basic features and is perfect for a beginner.",
+      "price": "<price>$0</price><month>month</month>",
+      "button": "Get Started",
+      "portfolios": "1 Portfolio",
+      "storage": "500 MB Image Storage",
+      "trades": "As many Trades as you want",
+      "support": "Email Support"
+    },
+    "essential": {
+      "most-popular": "Most Popular",
+      "title": "Essential",
+      "description": "You are ready to take your trading to the next level.",
+      "price": "<price>$10</price><month>month</month>",
+      "button": "Start Free Trial",
+      "portfolios": "5 Portfolios",
+      "storage": "5 GB Image Storage",
+      "dashboards": "Custom Dashboards",
+      "trades": "As many Trades as you want",
+      "support": "Priority support"
+    },
+    "premium": {
+      "title": "Premium",
+      "description": "You are a professional trader and need the best tools to help you succeed.",
+      "price": "<price>$40</price><month>month</month>",
+      "button": "Start Free Trial",
+      "all": "All Essential Features",
+      "portfolios": "Unlimited Portfolios",
+      "storage": "10 GB Image Storage",
+      "ai": "AI Predictions"
+    },
+    "newsletter": {
+      "title": "Subscribe to our <newsletter>Newsletter</newsletter>",
+      "description": "Receba as últimas notícias e atualizações sobre a nossa plataforma.",
+      "button": "Subscribe",
+      "email": "Enter your email"
+    }
+  }
 }
