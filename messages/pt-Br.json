@@ -1,10 +1,100 @@
 {
-  "hello": "Olá Mundo!",
   "trading": "Negociação",
-  "english": "Inglês",
-  "portuguese": "Português",
-  "toggle-theme": "Alterar Tema",
-  "dark": "Escuro",
-  "light": "Claro",
-  "system": "Sistema"
+  "locale": {
+    "english": "Inglês",
+    "portuguese": "Português"
+  },
+  "theme": {
+    "toggle-theme": "Alterar Tema",
+    "dark": "Escuro",
+    "light": "Claro",
+    "system": "Sistema"
+  },
+  "site": {
+    "features": "Funcionalidades",
+    "advanced-features": "Funcionalidades Avançadas",
+    "pricing": "Preços",
+    "FAQ": "FAQ",
+    "sign-in": "Entrar",
+    "sign-up": "Cadastrar",
+    "hero-message": "<title>Trading Journal</title> uma ferramenta completa para <traders>Traders</traders> e <investors>Investidores</investors>",
+    "hero-description": "Acompanhe suas negociações, analise seu desempenho e melhore seus resultados",
+    "get-started": "Começe Agora",
+    "start-free-trial": "Comece seu teste gratuito",
+    "custom-dashboards": "Dashboards",
+    "custom-dashboards-description": "Crie dashboards personalizados para analisar seu desempenho",
+    "responsive-design": "Design Responsivo",
+    "responsive-design-description": "Acesse de qualquer dispositivo, seja no seu computador, tablet ou celular",
+    "chart-performance": "Gráficos & Desempenho",
+    "chart-performance-description": "Acompanhe seu desempenho com gráficos e relatórios detalhados",
+    "any-market": "Qualquer Mercado",
+    "any-market-description": "Qualquer mercado, seja ações, opções, futuros, forex ou criptomoedas, em qualquer moeda",
+    "features-title": "Muitos <great>Otimos Recursos</great>",
+    "pricing-title": "Recebe Acesso <unlimited>Ilimitado</unlimited>",
+    "pricing-description": "Tenha acesso a todos os recursos e negociações ilimitadas por uma pequena taxa mensal ou até mesmo de graça.",
+    "features-cards": {
+      "charts": {
+        "title": "Graficos de Desempenho",
+        "description": "Analise seu desempenho com gráficos e métricas detalhadas conectadas aos seus gráficos de negociações."
+      },
+      "portfolio": {
+        "title": "Graficos de Portfólios",
+        "description": "Crie vários portfólios e gerencie suas negociações em um só lugar para qualquer mercado ou moeda."
+      },
+      "ai": {
+        "title": "Insights baseados em IA",
+        "description": "Obtenha insights e sugestões para melhorar seu desempenho com base em negociações anteriores."
+      }
+    },
+    "features-list": {
+      "multi": "Multiplos Portfólios",
+      "unlimited": "Trades ilimitadas",
+      "performance": "Gráficos de desempenho",
+      "stock": "Ações",
+      "futures": "Futuros",
+      "forex": "Forex",
+      "cryptocurrency": "Criptomoedas",
+      "dividends": "Dividendos",
+      "multi-currency": "Multi Moeda",
+      "image-storage": "Armazenamento de imagens"
+    },
+    "free": {
+      "title": "Free",
+      "description": "Nosso plano gratuito inclui recursos básicos e é perfeito para iniciantes.",
+      "price": "<price>R$0</price><month>mês</month>",
+      "button": "Comece hoje mesmo",
+      "portfolios": "1 portfólio",
+      "storage": "500 MB de armazenamento",
+      "trades": "Quantos Trades você quiser",
+      "support": "Suporte por email"
+    },
+    "essential": {
+      "most-popular": "Mais Popular",
+      "title": "Essential",
+      "description": "Recursos essenciais para levar sua negociação para o próximo nível",
+      "price": "<price>$40</price><month>mês</month>",
+      "button": "Comece seu teste gratuito",
+      "portfolios": "5 portfólios",
+      "storage": "5 GB de armazenamento",
+      "dashboards": "Dashboards Personalizados",
+      "trades": "Quantos Trades você quiser",
+      "support": "Suporte prioritário"
+    },
+    "premium": {
+      "title": "Premium",
+      "description": "Você é um trader profissional e precisa das melhores ferramentas para ter sucesso.",
+      "price": "<price>$150</price><month>mês</month>",
+      "button": "Comece seu teste gratuito",
+      "all": "Todos os recursos do plano Essential",
+      "portfolios": "Portfólios ilimitados",
+      "storage": "Armazenamento ilimitado",
+      "ai": "Insights baseados em IA"
+    },
+    "newsletter": {
+      "title": "Inscreva-se em nossa <newsletter>Newsletter</newsletter>",
+      "description": "Inscreva-se para receber atualizações sobre novos recursos e ofertas especiais.",
+      "button": "Inscreva-se",
+      "email": "Digite seu email"
+    }
+  }
 }

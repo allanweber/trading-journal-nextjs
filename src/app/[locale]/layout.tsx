@@ -1,5 +1,3 @@
-import LocaleSelect from '@/components/LocaleSelect';
-import { ModeToggle } from '@/components/ModeToggle';
 import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/providers/theme';
 import type { Metadata } from 'next';
@@ -28,12 +26,7 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body
-        className={cn(
-          'bg-background font-sans antialiased flex flex-col items-center mt-10 gap-4',
-          fontSans.variable
-        )}
-      >
+      <body className={cn('bg-background font-sans', fontSans.variable)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -41,15 +34,7 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <NextIntlClientProvider messages={messages}>
-            <header className="flex flex-col items-center gap-4">
-              <div>
-                <ModeToggle />
-              </div>
-              <nav>
-                <LocaleSelect />
-              </nav>
-            </header>
-            <main>{children}</main>
+            {children}
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
