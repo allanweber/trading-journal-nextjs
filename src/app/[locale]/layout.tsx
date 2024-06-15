@@ -2,8 +2,8 @@ import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/providers/theme';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
 import { Inter as FontSans } from 'next/font/google';
+import { notFound } from 'next/navigation';
 import '../globals.css';
 
 const fontSans = FontSans({
@@ -23,7 +23,13 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  const messages = await getMessages();
+  let messages;
+  try {
+    messages = (await import(`@/messages/${locale}-client.json`)).default;
+  } catch (error) {
+    notFound();
+  }
+
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={cn('bg-background font-sans', fontSans.variable)}>
