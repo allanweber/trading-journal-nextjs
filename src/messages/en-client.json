@@ -1,0 +1,12 @@
+{
+  "theme": {
+    "toggle-theme": "Toggle theme",
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
+  },
+  "locale": {
+    "english": "English",
+    "portuguese": "Portuguese"
+  }
+}

@@ -16,10 +16,9 @@ import { useState } from 'react';
 
 import { Icons } from '@/components/Icons';
 import LocaleSelect from '@/components/LocaleSelect';
-import { ModeToggle } from '@/components/ModeToggle';
+import ModeToggle from '@/components/ModeToggle';
 import { buttonVariants } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
 export interface RouteProps {
@@ -27,24 +26,18 @@ export interface RouteProps {
   label: string;
 }
 
-const routeList: RouteProps[] = [
-  {
-    href: '#features',
-    label: 'features',
-  },
-  {
-    href: '#pricing',
-    label: 'pricing',
-  },
-  // {
-  //   href: '#faq',
-  //   label: 'FAQ',
-  // },
-];
+export type NavbarProps = {
+  routeList: RouteProps[];
+  signInLabel: string;
+  signUpLabel: string;
+};
 
-export default function Navbar() {
+export default function Navbar({
+  routeList,
+  signInLabel,
+  signUpLabel,
+}: NavbarProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const t = useTranslations('site');
 
   return (
     <header className="sticky border-b-[1px] top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background">
@@ -88,7 +81,7 @@ export default function Navbar() {
                       onClick={() => setIsOpen(false)}
                       className={buttonVariants({ variant: 'ghost' })}
                     >
-                      {t(label)}
+                      {label}
                     </Link>
                   ))}
                   <Link
@@ -98,7 +91,7 @@ export default function Navbar() {
                       variant: 'default',
                     })}`}
                   >
-                    {t('sign-in')}
+                    {signInLabel}
                   </Link>
                   <Link
                     rel="noreferrer noopener"
@@ -107,7 +100,7 @@ export default function Navbar() {
                       variant: 'default',
                     })}`}
                   >
-                    {t('sign-up')}
+                    {signUpLabel}
                   </Link>
                   <LocaleSelect />
                 </nav>
@@ -126,7 +119,7 @@ export default function Navbar() {
                   variant: 'ghost',
                 })}`}
               >
-                {t(route.label)}
+                {route.label}
               </Link>
             ))}
           </nav>
@@ -139,7 +132,7 @@ export default function Navbar() {
                 variant: 'default',
               })}`}
             >
-              {t('sign-in')}
+              {signInLabel}
             </Link>
             <Link
               rel="noreferrer noopener"
@@ -148,7 +141,7 @@ export default function Navbar() {
                 variant: 'default',
               })}`}
             >
-              {t('sign-up')}
+              {signUpLabel}
             </Link>
             <LocaleSelect />
             <ModeToggle />
