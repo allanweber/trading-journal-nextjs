@@ -5,7 +5,7 @@ export default {
   schema: './src/db/schema',
   out: './src/db/migrations',
   dialect: 'sqlite',
-  driver: env.NODE_ENV === 'production' ? 'turso' : undefined,
+  driver: env.NODE_ENV === 'development' ? undefined : 'turso',
   dbCredentials: {
     url: env.DATABASE_URL,
     authToken: env.DATABASE_AUTH_TOKEN,
