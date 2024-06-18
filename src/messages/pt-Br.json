@@ -94,7 +94,8 @@
       "title": "Inscreva-se em nossa <newsletter>Newsletter</newsletter>",
       "description": "Inscreva-se para receber atualizações sobre novos recursos e ofertas especiais.",
       "button": "Inscreva-se",
-      "email": "Digite seu email"
+      "email": "Digite seu email",
+      "waiting": "Inscrevendo..."
     }
   }
 }
