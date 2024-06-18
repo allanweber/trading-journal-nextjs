@@ -10,7 +10,7 @@
     "lint": "next lint",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "postinstall": "drizzle-kit migrate",
+    "postinstall": "npx drizzle-kit migrate",
     "db:seed": "cross-env DB_SEEDING=true tsx src/db/seed.ts"
   },
   "dependencies": {
