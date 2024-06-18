@@ -8,6 +8,7 @@ export default function Newsletter() {
     inputLabel: t('email'),
     buttonLabel: t('button'),
     waitingMessage: t('waiting'),
+    successMessage: t('success'),
   };
 
   return (

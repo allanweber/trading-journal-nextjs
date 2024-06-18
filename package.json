@@ -9,13 +9,11 @@
     "start": "next start",
     "lint": "next lint",
     "db:generate": "drizzle-kit generate",
-    "db:up": "drizzle-kit up",
     "db:migrate": "drizzle-kit migrate",
+    "postinstall": "db:migrate",
     "db:seed": "cross-env DB_SEEDING=true tsx src/db/seed.ts"
   },
   "dependencies": {
-    "@conform-to/react": "^1.1.4",
-    "@conform-to/zod": "^1.1.4",
     "@libsql/client": "^0.6.2",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-avatar": "^1.0.4",
@@ -36,7 +34,9 @@
     "react-dom": "^18.3.1",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "zsa": "^0.3.5",
+    "zsa-react": "^0.1.6"
   },
   "devDependencies": {
     "@types/node": "^20.14.2",

@@ -95,7 +95,8 @@
       "description": "Receba as últimas notícias e atualizações sobre a nossa plataforma.",
       "button": "Subscribe",
       "email": "Enter your email",
-      "waiting": "Subscribing..."
+      "waiting": "Subscribing...",
+      "success": "Thanks for subscribing to our newsletter"
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "d62e2188-1f03-4fdd-a15f-dcf580fc0d4b",
+  "id": "343975f5-0ccd-412c-a4b1-94809491f375",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "newsletter": {
@@ -9,9 +9,9 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
           "autoincrement": false
         },
         "email": {

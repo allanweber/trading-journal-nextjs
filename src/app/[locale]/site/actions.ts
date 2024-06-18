@@ -1,25 +1,38 @@
 'use server';
 
-import { parseWithZod } from '@conform-to/zod';
-import { newsletterSchema } from './schema';
+import db from '@/db';
+import { newsletter } from '@/db/schema';
+import { eq } from 'drizzle-orm';
+import { z } from 'zod';
+import { createServerAction } from 'zsa';
 
-export async function subscribeNewsletter(
-  prevState: unknown,
-  formData: FormData
-) {
-  //sleep for 5 seconds
-  await new Promise((r) => setTimeout(r, 5000));
+export const subscribeNewsletter = createServerAction()
+  .input(
+    z.object({
+      email: z
+        .string({ message: 'Provide your email address' })
+        .email({ message: 'Invalid email address' }),
+    }),
+    {
+      type: 'formData',
+    }
+  )
+  .handler(async ({ input }) => {
+    try {
+      const subscribed = await db.query.newsletter.findFirst({
+        where: eq(newsletter.email, input.email),
+      });
 
-  console.log('formData', formData);
+      if (!subscribed) {
+        const result = await db.insert(newsletter).values({
+          email: input.email,
+        });
+      }
 
-  const submission = parseWithZod(formData, {
-    schema: newsletterSchema,
+      return { success: true };
+    } catch (error) {
+      console.error('error', error);
+
+      return { success: false };
+    }
   });
-
-  if (submission.status !== 'success') {
-    return submission.reply();
-  }
-
-  submission.payload = { email: formData.get('email') as string };
-  return submission.reply({ resetForm: true });
-}

@@ -1,8 +1,8 @@
 import { sql } from 'drizzle-orm';
-import { sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 const newsletter = sqliteTable('newsletter', {
-  id: text('id'),
+  id: integer('id').primaryKey(),
   email: text('email').notNull(),
   createdAt: text('created_at')
     .notNull()

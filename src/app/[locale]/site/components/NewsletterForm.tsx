@@ -1,18 +1,18 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useFormStatus } from 'react-dom';
 import { subscribeNewsletter } from '../actions';
 
 import { Button } from '@/components/ui/button';
-import { useForm } from '@conform-to/react';
-import { parseWithZod } from '@conform-to/zod';
-import { newsletterSchema } from '../schema';
+
+import { useServerAction } from 'zsa-react';
 
 type Props = {
   inputLabel: string;
   buttonLabel: string;
   waitingMessage: string;
+  successMessage: string;
 };
 
 function SubmitButton({ label, waiting }: { label: string; waiting: string }) {
@@ -28,27 +28,23 @@ export default function NewsletterForm({
   inputLabel,
   buttonLabel,
   waitingMessage,
+  successMessage,
 }: Props) {
-  const [lastResult, action] = useFormState(subscribeNewsletter, undefined);
-  const [form, fields] = useForm({
-    lastResult,
+  const { executeFormAction, isSuccess, error } =
+    useServerAction(subscribeNewsletter);
 
-    onValidate({ formData }) {
-      return parseWithZod(formData, { schema: newsletterSchema });
-    },
-
-    shouldValidate: 'onSubmit',
-    shouldRevalidate: 'onInput',
-  });
-
-  console.log('fields', lastResult);
+  if (isSuccess) {
+    return (
+      <div className="flex flex-col items-center">
+        <h3 className="text-3xl">{successMessage}</h3>
+      </div>
+    );
+  }
 
   return (
     <form
       className="flex flex-col w-full md:flex-row md:w-6/12 lg:w-4/12 mx-auto gap-4 md:gap-2"
-      id={form.id}
-      onSubmit={form.onSubmit}
-      action={action}
+      action={executeFormAction}
       noValidate
     >
       <div className="flex flex-col gap-2 mx-auto w-80">
@@ -57,12 +53,10 @@ export default function NewsletterForm({
           className="bg-muted/50 dark:bg-muted/80 invalid:border-red-500 invalid:text-red-600"
           aria-label="email"
           type="email"
-          key={fields.email.key}
-          name={fields.email.name}
-          defaultValue={fields.email.initialValue}
-          aria-invalid={fields.email.errors !== undefined}
+          name="email"
+          aria-invalid={error?.fieldErrors?.email !== undefined}
         />
-        <div className="text-sm text-red-500">{fields.email.errors}</div>
+        <div className="text-sm text-red-500">{error?.fieldErrors?.email}</div>
       </div>
       <SubmitButton label={buttonLabel} waiting={waitingMessage} />
     </form>
