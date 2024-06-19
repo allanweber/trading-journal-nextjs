@@ -1,13 +1,16 @@
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { useTranslations } from 'next-intl';
+import NewsletterForm from './NewsletterForm';
 
 export default function Newsletter() {
   const t = useTranslations('site.newsletter');
-  async function create() {
-    'use server';
-    console.log('create');
-  }
+
+  const formProps = {
+    inputLabel: t('email'),
+    buttonLabel: t('button'),
+    waitingMessage: t('waiting'),
+    successMessage: t('success'),
+  };
+
   return (
     <section id="newsletter">
       <hr className="w-11/12 mx-auto" />
@@ -26,17 +29,7 @@ export default function Newsletter() {
           {t('description')}
         </p>
 
-        <form
-          className="flex flex-col w-full md:flex-row md:w-6/12 lg:w-4/12 mx-auto gap-4 md:gap-2"
-          action={create}
-        >
-          <Input
-            placeholder={t('email')}
-            className="bg-muted/50 dark:bg-muted/80 "
-            aria-label="email"
-          />
-          <Button>{t('button')}</Button>
-        </form>
+        <NewsletterForm {...formProps} />
       </div>
 
       <hr className="w-11/12 mx-auto" />
