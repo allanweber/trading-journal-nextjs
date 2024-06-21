@@ -2,18 +2,12 @@ import { config } from 'dotenv';
 import { expand } from 'dotenv-expand';
 import { ZodError, z } from 'zod';
 
-const stringBoolean = z.coerce
-  .string()
-  .transform((val) => {
-    return val === 'true';
-  })
-  .default('false');
-
 const EnvSchema = z.object({
   NODE_ENV: z.string().default('development'),
   DATABASE_URL: z.string(),
   DATABASE_AUTH_TOKEN: z.string(),
-  DB_MIGRATING: stringBoolean,
+  NEXT_PUBLIC_RECAPTCHA_SITE_KEY: z.string(),
+  GOOGLE_API_KEY: z.string(),
 });
 
 export type EnvSchema = z.infer<typeof EnvSchema>;
