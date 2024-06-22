@@ -97,6 +97,10 @@
       "email": "Digite seu email",
       "waiting": "Inscrevendo...",
       "success": "Obrigado por se inscrever na nossa newsletter!"
+    },
+    "unsubscribe": {
+      "title": "Sentimos muito em ver você partir",
+      "button": "Clique aqui para cancelar a inscrição"
     }
   }
 }

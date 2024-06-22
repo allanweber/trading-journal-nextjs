@@ -8,5 +8,13 @@
   "locale": {
     "english": "Inglês",
     "portuguese": "Português"
+  },
+  "validation": {
+    "email-required": "Email é obrigatório",
+    "email-invalid": "Email inválido"
+  },
+  "errors": {
+    "error": "Algo deu errado",
+    "TOO_MANY_REQUESTS": "Muitas requisições, tente novamente mais tarde"
   }
 }

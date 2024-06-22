@@ -97,6 +97,10 @@
       "email": "Enter your email",
       "waiting": "Subscribing...",
       "success": "Thanks for subscribing to our newsletter"
+    },
+    "unsubscribe": {
+      "title": "We are sorry to see you are going",
+      "button": "Click here to unsubscribe"
     }
   }
 }

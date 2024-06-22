@@ -15,7 +15,7 @@ export default function Newsletter() {
     <section id="newsletter">
       <hr className="w-11/12 mx-auto" />
 
-      <div className="container py-24 sm:py-32">
+      <article className="container py-24 sm:py-32">
         <h3 className="text-center text-4xl md:text-5xl font-bold">
           {t.rich('title', {
             newsletter: (newsletter) => (
@@ -30,7 +30,7 @@ export default function Newsletter() {
         </p>
 
         <NewsletterForm {...formProps} />
-      </div>
+      </article>
 
       <hr className="w-11/12 mx-auto" />
     </section>

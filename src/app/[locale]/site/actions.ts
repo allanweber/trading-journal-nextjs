@@ -1,38 +1,38 @@
 'use server';
 
-import db from '@/db';
-import { newsletter } from '@/db/schema';
-import { eq } from 'drizzle-orm';
+import { subscribe } from '@/lib/newsletter';
+import { validateToken } from '@/lib/recaptcha';
+import { unauthenticatedAction } from '@/lib/safe-action';
 import { z } from 'zod';
 import { createServerAction } from 'zsa';
 
-export const subscribeNewsletter = createServerAction()
+export const subscribeNewsletter = unauthenticatedAction
+  .createServerAction()
   .input(
     z.object({
       email: z
-        .string({ message: 'Provide your email address' })
-        .email({ message: 'Invalid email address' }),
+        .string({ message: 'email-required' })
+        .email({ message: 'email-invalid' }),
     }),
     {
       type: 'formData',
     }
   )
   .handler(async ({ input }) => {
+    await subscribe(input.email);
+    return { success: true };
+  });
+
+export const recaptchaValidation = createServerAction()
+  .input(
+    z.object({
+      token: z.string(),
+    })
+  )
+  .handler(async ({ input }) => {
     try {
-      const subscribed = await db.query.newsletter.findFirst({
-        where: eq(newsletter.email, input.email),
-      });
-
-      if (!subscribed) {
-        const result = await db.insert(newsletter).values({
-          email: input.email,
-        });
-      }
-
-      return { success: true };
+      return await validateToken(input.token);
     } catch (error) {
-      console.error('error', error);
-
       return { success: false };
     }
   });
