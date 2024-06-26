@@ -102,5 +102,13 @@
       "title": "Sentimos muito em ver você partir",
       "button": "Clique aqui para cancelar a inscrição"
     }
+  },
+  "my-account": "Minha Conta",
+  "settings": "Configurações",
+  "support": "Suporte",
+  "logout": "Sair",
+  "search": {
+    "search": "Buscar",
+    "not-found": "Nenhum resultado encontrado"
   }
 }

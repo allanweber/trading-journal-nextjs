@@ -102,5 +102,13 @@
       "title": "We are sorry to see you are going",
       "button": "Click here to unsubscribe"
     }
+  },
+  "my-account": "My Account",
+  "settings": "Settings",
+  "support": "Support",
+  "logout": "Logout",
+  "search": {
+    "search": "Search",
+    "not-found": "No results found"
   }
 }

@@ -9,6 +9,13 @@ export const unauthenticatedAction = createServerActionProcedure().handler(
   }
 );
 
+export const authenticatedAction = createServerActionProcedure().handler(
+  async () => {
+    //TODO: Implement authentication
+    await rateLimitByKey(GLOBAL_USER, 10, 10000);
+  }
+);
+
 export class ActionError<T extends string> extends Error {
   name: T;
   message: string;

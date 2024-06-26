@@ -1,4 +1,3 @@
-import LocaleSelect from '@/components/LocaleSelect';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -9,9 +8,23 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { constants } from '@/lib/config';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
+const navItems = [
+  {
+    label: 'settings',
+    href: `${constants.APP_ROOT_PAGE}/settings/user`,
+  },
+  {
+    label: 'support',
+    href: `${constants.APP_ROOT_PAGE}/settings/support`,
+  },
+];
+
 export default function Account() {
+  const t = useTranslations();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -27,18 +40,15 @@ export default function Account() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel>{t('my-account')}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
-          <Link href="/trading/settings/user">Settings</Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem>Support</DropdownMenuItem>
+        {navItems.map((item) => (
+          <DropdownMenuItem key={item.href}>
+            <Link href={item.href}>{t(item.label)}</Link>
+          </DropdownMenuItem>
+        ))}
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <LocaleSelect />
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>Logout</DropdownMenuItem>
+        <DropdownMenuItem>{t('logout')}</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

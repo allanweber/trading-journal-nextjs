@@ -7,16 +7,9 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { useCurrentPath } from '@/hooks/useCurrentPath';
+import { constants } from '@/lib/config';
 import { cn } from '@/lib/utils';
-import {
-  HomeIcon,
-  LineChartIcon,
-  Package,
-  Package2Icon,
-  SettingsIcon,
-  ShoppingCartIcon,
-  UsersIcon,
-} from 'lucide-react';
+import { HomeIcon, Package, SettingsIcon } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
@@ -24,27 +17,7 @@ export const navItems = [
   {
     icon: <HomeIcon />,
     label: 'Dashboard',
-    href: '/trading/dashboard',
-  },
-  {
-    icon: <ShoppingCartIcon />,
-    label: 'Orders',
-    href: '#',
-  },
-  {
-    icon: <Package2Icon />,
-    label: 'Products',
-    href: '#',
-  },
-  {
-    icon: <UsersIcon />,
-    label: 'Customers',
-    href: '#',
-  },
-  {
-    icon: <LineChartIcon />,
-    label: 'Analytics',
-    href: '#',
+    href: `${constants.APP_ROOT_PAGE}/dashboard`,
   },
 ];
 
@@ -56,7 +29,7 @@ export default function SideNav() {
       <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
         <TooltipProvider>
           <Link
-            href="/trading"
+            href={`${constants.APP_ROOT_PAGE}`}
             className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
             prefetch={false}
           >
@@ -90,10 +63,10 @@ export default function SideNav() {
           <Tooltip>
             <TooltipTrigger asChild>
               <Link
-                href="/trading/settings"
+                href={`${constants.APP_ROOT_PAGE}/settings`}
                 className={cn(
                   'group flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8',
-                  '/trading/settings' === currentPath
+                  `${constants.APP_ROOT_PAGE}/settings` === currentPath
                     ? 'bg-accent scale-110'
                     : ''
                 )}

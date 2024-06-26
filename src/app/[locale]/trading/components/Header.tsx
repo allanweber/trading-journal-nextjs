@@ -1,11 +1,10 @@
-import ModeToggle from '@/components/ModeToggle';
 import PageBreadcrumb from '@/components/PageBreadcrumb';
+import Search from '@/components/Search';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { PanelLeftIcon } from 'lucide-react';
 import Account from './Account';
 import MobileNav from './MobileNav';
-import Search from './Search';
 
 export default function Header() {
   return (
@@ -26,7 +25,6 @@ export default function Header() {
         <Search />
       </div>
       <Account />
-      <ModeToggle />
     </header>
   );
 }
