@@ -16,5 +16,9 @@
   "errors": {
     "error": "Something went wrong",
     "TOO_MANY_REQUESTS": "Too many requests, please try again later"
+  },
+  "search": {
+    "search": "Search",
+    "not-found": "No results found"
   }
 }

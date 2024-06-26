@@ -1,6 +1,7 @@
 'use client';
 
 import { useCurrentPath } from '@/hooks/useCurrentPath';
+import { constants } from '@/lib/config';
 import { cn } from '@/lib/utils';
 import { Package2Icon, SettingsIcon } from 'lucide-react';
 import Link from 'next/link';
@@ -14,7 +15,7 @@ export default function MobileNav() {
     <nav className="fixed inset-y-8 grid gap-6 text-lg font-medium">
       <nav className="flex flex-col gap-4">
         <Link
-          href="/trading"
+          href={`${constants.APP_ROOT_PAGE}`}
           className="group flex h-10 w-50 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
           prefetch={false}
         >
@@ -43,10 +44,10 @@ export default function MobileNav() {
       </nav>
       <nav className="mt-auto flex flex-col gap-4">
         <Link
-          href="/trading/settings"
+          href={`${constants.APP_ROOT_PAGE}/settings`}
           className={cn(
             'group flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground',
-            '/trading/settings' === currentPath
+            `${constants.APP_ROOT_PAGE}/settings` === currentPath
               ? 'text-foreground'
               : 'text-muted-foreground'
           )}

@@ -16,5 +16,9 @@
   "errors": {
     "error": "Algo deu errado",
     "TOO_MANY_REQUESTS": "Muitas requisições, tente novamente mais tarde"
+  },
+  "search": {
+    "search": "Buscar",
+    "not-found": "Nenhum resultado encontrado"
   }
 }
