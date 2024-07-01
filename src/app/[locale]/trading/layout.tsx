@@ -1,4 +1,5 @@
 import { validateRequest } from '@/lib/auth';
+import { constants } from '@/lib/config';
 import { redirect } from 'next/navigation';
 import Header from './components/Header';
 import SideNav from './components/SideNav';
@@ -10,7 +11,7 @@ export default async function TradingLayout({
 }) {
   const session = await validateRequest();
   if (!session.user) {
-    return redirect('/signin');
+    return redirect(constants.APP_SIGNIN_PAGE);
   }
 
   return (

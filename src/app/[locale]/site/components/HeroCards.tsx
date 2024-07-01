@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { constants } from '@/lib/config';
 import {
   BadgeCent,
   Check,
@@ -78,7 +79,9 @@ export default function HeroCards() {
 
         <CardContent>
           <Button asChild className="w-full">
-            <Link href="/signup">{t('start-free-trial')}</Link>
+            <Link href={constants.APP_SIGNUP_PAGE}>
+              {t('start-free-trial')}
+            </Link>
           </Button>
         </CardContent>
 

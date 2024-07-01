@@ -2,15 +2,16 @@ import { verifyRequestOrigin } from 'lucia';
 import createMiddleware from 'next-intl/middleware';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
+import { constants } from './lib/config';
 
 const locales = ['en', 'pt-Br'];
 const publicPages = [
   '/site',
-  '/signin',
-  '/signup',
-  '/forgot-password',
-  '/reset-password',
-  '/verify-email',
+  '/auth/sign-in',
+  '/auth/sign-up',
+  '/auth/forgot-password',
+  '/auth/reset-password',
+  '/auth/verify-email',
 ];
 
 const intlMiddleware = createMiddleware({
@@ -22,7 +23,9 @@ const intlMiddleware = createMiddleware({
 const authMiddleware = (request: NextRequest) => {
   const session = cookies().get('auth_session')?.value ?? null;
   if (!session) {
-    return NextResponse.redirect(new URL('/signin', request.nextUrl));
+    return NextResponse.redirect(
+      new URL(constants.APP_SIGNIN_PAGE, request.nextUrl)
+    );
   }
 
   if (request.method === 'GET') {

@@ -110,5 +110,14 @@
   "search": {
     "search": "Buscar",
     "not-found": "Nenhum resultado encontrado"
+  },
+  "auth": {
+    "login": "Entrar",
+    "register": "Registrar",
+    "signin-tile": "Entre com sua conta",
+    "signin-description": "Digite seu email e senha abaixo ou entre com sua conta do Gmail",
+    "signup-tile": "Crie sua conta",
+    "signup-description": "Digite seu email e senha abaixo ou cadastre-se com sua conta do Gmail",
+    "terms-privacy": "Ao clicar em continuar, você concorda com nossos <terms>Termos de Serviço</terms> e <privacy>Política de Privacidade</privacy>."
   }
 }

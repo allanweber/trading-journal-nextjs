@@ -20,7 +20,7 @@ export async function createUser(username: string, password: string) {
     where: eq(user.username, username),
   });
   if (registeredUser) {
-    throw new ActionError('CONFLICT', 'User already exists');
+    throw new ActionError('EXISTING_USER_NAME', 'User already exists');
   }
 
   const passwordHash = await hashPassword(password);

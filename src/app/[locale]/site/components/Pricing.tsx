@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { constants } from '@/lib/config';
 import { Check } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
@@ -79,7 +80,7 @@ export default function Pricing() {
 
           <CardContent>
             <Button className="w-full" asChild>
-              <Link href="/signup">{freeT('button')}</Link>
+              <Link href={constants.APP_SIGNUP_PAGE}>{freeT('button')}</Link>
             </Button>
           </CardContent>
 

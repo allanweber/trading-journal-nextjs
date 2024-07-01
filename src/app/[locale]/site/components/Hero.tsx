@@ -1,4 +1,5 @@
 import { buttonVariants } from '@/components/ui/button';
+import { constants } from '@/lib/config';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import HeroCards from './HeroCards';
@@ -35,7 +36,7 @@ export default function Hero() {
         <div className="space-y-4 md:space-y-0 md:space-x-4">
           <Link
             rel="noreferrer noopener"
-            href="/signin"
+            href={constants.APP_SIGNIN_PAGE}
             className={`w-full md:w-1/3 ${buttonVariants({
               variant: 'default',
             })}`}

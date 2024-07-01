@@ -15,10 +15,18 @@
   },
   "errors": {
     "error": "Something went wrong",
-    "TOO_MANY_REQUESTS": "Too many requests, please try again later"
+    "TOO_MANY_REQUESTS": "Too many requests, please try again later",
+    "NOT_AUTHORIZED": "Invalid username or password",
+    "EXISTING_USER_NAME": "Username already exists",
+    "username-required": "Username is required",
+    "password-required": "Password is required",
+    "password-invalid-size": "Password must be between 6 and 255 characters"
   },
   "search": {
     "search": "Search",
     "not-found": "No results found"
-  }
+  },
+  "email": "Email",
+  "password": "Password",
+  "continue": "Continue"
 }

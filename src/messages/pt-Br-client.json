@@ -15,10 +15,18 @@
   },
   "errors": {
     "error": "Algo deu errado",
-    "TOO_MANY_REQUESTS": "Muitas requisições, tente novamente mais tarde"
+    "TOO_MANY_REQUESTS": "Muitas requisições, tente novamente mais tarde",
+    "NOT_AUTHORIZED": "Nome de usuário ou senha inválidos",
+    "EXISTING_USER_NAME": "Nome de usuário já existe",
+    "username-required": "Nome de usuário é obrigatório",
+    "password-required": "Senha é obrigatória",
+    "password-invalid-size": "A senha deve ter entre 6 e 255 caracteres"
   },
   "search": {
     "search": "Buscar",
     "not-found": "Nenhum resultado encontrado"
-  }
+  },
+  "email": "Email",
+  "password": "Senha",
+  "continue": "Continuar"
 }

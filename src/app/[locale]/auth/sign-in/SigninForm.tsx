@@ -2,15 +2,17 @@
 
 import SubmitButton from '@/components/SubmitButton';
 import { Input } from '@/components/ui/input';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { redirect } from 'next/navigation';
 import { useServerAction } from 'zsa-react';
-import { signup } from './action';
+import { signin } from './action';
 
-export default function SignupForm() {
+export default function SigninForm() {
   const locale = useLocale();
+  const t = useTranslations();
+  const errorT = useTranslations('errors');
 
-  const { executeFormAction, isSuccess, error } = useServerAction(signup);
+  const { executeFormAction, isSuccess, error } = useServerAction(signin);
 
   if (isSuccess) {
     return redirect(`/${locale}/trading`);
@@ -19,32 +21,36 @@ export default function SignupForm() {
   return (
     <form action={executeFormAction} noValidate className="flex flex-col gap-4">
       <div className="flex flex-col gap-2 mx-auto w-80">
-        <label htmlFor="username">Username</label>
-        <Input name="username" id="username" />
+        <Input name="username" id="username" placeholder={t('email')} />
         <div className="text-sm text-red-500">
           <>
             {error?.fieldErrors?.username &&
               error?.fieldErrors?.username.map((err) => (
-                <div key={err}>{err}</div>
+                <div key={err}>{errorT(err)}</div>
               ))}
-            {error && 'ERROR' === error.code && <div>{error.message}</div>}
+            {error && 'ERROR' === error.code && <div>{errorT(error.name)}</div>}
           </>
         </div>
       </div>
 
       <div className="flex flex-col gap-2 mx-auto w-80">
-        <label htmlFor="password">Password</label>
-        <Input type="password" name="password" id="password" />
+        <Input
+          type="password"
+          name="password"
+          id="password"
+          placeholder={t('password')}
+        />
         <div className="text-sm text-red-500">
           {error?.fieldErrors?.password &&
             error?.fieldErrors?.password.map((err) => (
-              <div key={err}>{err}</div>
+              <div key={err}>{errorT(err)}</div>
             ))}
+          {error && 'ERROR' === error.code && <div>{error.message}</div>}
         </div>
       </div>
 
       <div className="flex flex-col gap-2 mx-auto w-80">
-        <SubmitButton>Continue</SubmitButton>
+        <SubmitButton>{t('continue')}</SubmitButton>
       </div>
     </form>
   );
