@@ -3,6 +3,9 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin();
 
 const nextConfig = {
+  experimental: {
+    serverComponentsExternalPackages: ['@node-rs/argon2'],
+  },
   async redirects() {
     return [
       {

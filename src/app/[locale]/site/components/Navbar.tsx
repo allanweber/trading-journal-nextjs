@@ -86,7 +86,7 @@ export default function Navbar({
                   ))}
                   <Link
                     rel="noreferrer noopener"
-                    href="/"
+                    href="/signin"
                     className={`w-[130px] ${buttonVariants({
                       variant: 'default',
                     })}`}
@@ -95,7 +95,7 @@ export default function Navbar({
                   </Link>
                   <Link
                     rel="noreferrer noopener"
-                    href="/"
+                    href="/signup"
                     className={`w-[130px] ${buttonVariants({
                       variant: 'default',
                     })}`}
@@ -127,7 +127,7 @@ export default function Navbar({
           <div className="hidden md:flex gap-2">
             <Link
               rel="noreferrer noopener"
-              href="/"
+              href="/signin"
               className={`w-[130px] ${buttonVariants({
                 variant: 'default',
               })}`}
@@ -136,7 +136,7 @@ export default function Navbar({
             </Link>
             <Link
               rel="noreferrer noopener"
-              href="/"
+              href="/signup"
               className={`w-[130px] ${buttonVariants({
                 variant: 'default',
               })}`}

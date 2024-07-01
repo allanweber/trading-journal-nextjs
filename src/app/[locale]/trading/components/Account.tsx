@@ -11,6 +11,7 @@ import {
 import { constants } from '@/lib/config';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { signOut } from './action';
 
 const navItems = [
   {
@@ -48,7 +49,18 @@ export default function Account() {
           </DropdownMenuItem>
         ))}
         <DropdownMenuSeparator />
-        <DropdownMenuItem>{t('logout')}</DropdownMenuItem>
+        <DropdownMenuItem>
+          <form action={signOut}>
+            <Button
+              variant="ghost"
+              type="submit"
+              size="sm"
+              className="justify-start m-0 p-0 font-normal h-5 w-24"
+            >
+              {t('logout')}
+            </Button>
+          </form>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

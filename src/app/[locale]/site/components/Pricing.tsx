@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/card';
 import { Check } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 enum PopularPlanType {
   NO = 0,
@@ -24,51 +25,6 @@ interface PricingProps {
   buttonText: string;
   benefitList: string[];
 }
-
-const pricingList: PricingProps[] = [
-  {
-    title: 'Free',
-    popular: 0,
-    price: 0,
-    description:
-      'Our free plan includes basic features and is perfect for a beginner.',
-    buttonText: 'Get Started',
-    benefitList: [
-      '1 Portfolio',
-      '500 MB Image Storage',
-      'As many Trades as you want',
-      'Community support',
-    ],
-  },
-  {
-    title: 'Essential',
-    popular: 1,
-    price: 10,
-    description: 'You are ready to take your trading to the next level.',
-    buttonText: 'Start Free Trial',
-    benefitList: [
-      '5 portfolios',
-      '5 GB Image Storage',
-      'Custom Dashboards',
-      'As many Trades as you want',
-      'Priority support',
-    ],
-  },
-  {
-    title: 'Premium',
-    popular: 0,
-    price: 40,
-    description:
-      'You are a professional trader and need the best tools to help you succeed.',
-    buttonText: 'Contact US',
-    benefitList: [
-      'All Essential Features',
-      'Unlimited Portfolios',
-      'Unlimited Image Storage',
-      'AI Predictions',
-    ],
-  },
-];
 
 const freeKeys = ['portfolios', 'storage', 'trades', 'support'];
 const essentialKeys = [
@@ -122,7 +78,9 @@ export default function Pricing() {
           </CardHeader>
 
           <CardContent>
-            <Button className="w-full">{freeT('button')}</Button>
+            <Button className="w-full" asChild>
+              <Link href="/signup">{freeT('button')}</Link>
+            </Button>
           </CardContent>
 
           <hr className="w-4/5 m-auto mb-4" />
@@ -162,7 +120,9 @@ export default function Pricing() {
           </CardHeader>
 
           <CardContent>
-            <Button className="w-full">{essentialT('button')}</Button>
+            <Button disabled={true} className="w-full">
+              {essentialT('button')}
+            </Button>
           </CardContent>
 
           <hr className="w-4/5 m-auto mb-4" />
@@ -198,7 +158,9 @@ export default function Pricing() {
           </CardHeader>
 
           <CardContent>
-            <Button className="w-full">{premiumT('button')}</Button>
+            <Button disabled={true} className="w-full">
+              {premiumT('button')}
+            </Button>
           </CardContent>
 
           <hr className="w-4/5 m-auto mb-4" />
