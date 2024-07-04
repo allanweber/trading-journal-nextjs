@@ -16,11 +16,17 @@
   "errors": {
     "error": "Something went wrong",
     "TOO_MANY_REQUESTS": "Too many requests, please try again later",
-    "NOT_AUTHORIZED": "Invalid username or password",
-    "EXISTING_USER_NAME": "Username already exists",
-    "username-required": "Username is required",
+    "NOT_AUTHORIZED": "Invalid email or password",
+    "EXISTING_USER_NAME": "Email already exists",
+    "EMAIL_NOT_VERIFIED": "Email not verified",
+    "USER_NOT_FOUND": "User not found",
+    "INVALID_CODE": "Invalid code",
+    "email-required": "Email is required",
+    "email-invalid": "Email is invalid",
     "password-required": "Password is required",
-    "password-invalid-size": "Password must be between 6 and 255 characters"
+    "password-invalid-size": "Password must be between 6 and 255 characters",
+    "password-mismatch": "Passwords do not match",
+    "invalid-token": "The token provided is invalid or has expired."
   },
   "search": {
     "search": "Search",
@@ -28,5 +34,8 @@
   },
   "email": "Email",
   "password": "Password",
-  "continue": "Continue"
+  "confirm-password": "Confirm Password",
+  "continue": "Continue",
+  "please-wait": "Please wait...",
+  "forgot-password-email-sent": "An email has been sent to reset your password"
 }

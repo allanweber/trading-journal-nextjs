@@ -118,6 +118,13 @@
     "signin-description": "Enter your email and password below or sign in with your Gmail account",
     "signup-tile": "Create your account",
     "signup-description": "Enter your email and password below or sign up with your Gmail account",
-    "terms-privacy": "By clicking continue, you agree to our <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>."
+    "terms-privacy": "By clicking continue, you agree to our <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>.",
+    "verify-email": "Verify your email",
+    "verify-email-description": "We have sent an email with a verification code to your email address. Please check your inbox and enter the received code below.",
+    "forgot-password": "Forgot your password?",
+    "reset-password": "Reset your password",
+    "forgot-password-description": "Enter your email address and we will send you a link to reset your password.",
+    "reset-password-description": "Enter your new password below.",
+    "invalid-token": "The token provided is invalid or has expired. Please request a new one to reset your password clicking on the link below."
   }
 }

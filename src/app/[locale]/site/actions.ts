@@ -1,8 +1,8 @@
 'use server';
 
-import { subscribe } from '@/lib/newsletter';
 import { validateToken } from '@/lib/recaptcha';
 import { unauthenticatedAction } from '@/lib/safe-action';
+import { subscribe } from '@/services/newsletter.service';
 import { z } from 'zod';
 import { createServerAction } from 'zsa';
 

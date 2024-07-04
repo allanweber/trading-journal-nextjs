@@ -4,6 +4,7 @@ import { ZodError, z } from 'zod';
 
 const EnvSchema = z.object({
   NODE_ENV: z.string().default('development'),
+  HOST_NAME: z.string(),
   DATABASE_URL: z.string(),
   DATABASE_AUTH_TOKEN: z.string(),
   NEXT_PUBLIC_RECAPTCHA_SITE_KEY: z.string(),

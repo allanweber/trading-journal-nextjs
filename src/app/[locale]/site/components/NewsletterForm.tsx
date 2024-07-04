@@ -62,7 +62,7 @@ export default function NewsletterForm({
             name="email"
             aria-invalid={error?.fieldErrors?.email !== undefined}
           />
-          <div className="text-sm text-red-500">
+          <div className="text-sm text-destructive">
             {error?.fieldErrors?.email &&
               error?.fieldErrors?.email.map((err) => t(err))}
           </div>

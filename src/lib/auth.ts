@@ -5,6 +5,7 @@ import { Lucia } from 'lucia';
 import { cookies } from 'next/headers';
 import { cache } from 'react';
 
+import { verifyCredentials } from '@/services/user.service';
 import type { Session, User } from 'lucia';
 
 const adapter = new DrizzleSQLiteAdapter(db, session, user);
@@ -18,7 +19,8 @@ export const lucia = new Lucia(adapter, {
   },
   getUserAttributes: (attributes) => {
     return {
-      username: attributes.username,
+      email: attributes.email,
+      emailVerified: attributes.email_verified,
     };
   },
 });
@@ -31,7 +33,8 @@ declare module 'lucia' {
 }
 
 interface DatabaseUserAttributes {
-  username: string;
+  email: string;
+  email_verified: boolean;
 }
 
 export const validateRequest = cache(
@@ -68,3 +71,22 @@ export const validateRequest = cache(
     return result;
   }
 );
+
+export async function logout() {
+  const { session } = await validateRequest();
+  if (session) {
+    await lucia.invalidateSession(session.id);
+  }
+  return lucia.createBlankSessionCookie();
+}
+
+export async function login(email: string, password: string) {
+  const userId = await verifyCredentials(email, password);
+  const session = await lucia.createSession(userId, {});
+  const sessionCookie = lucia.createSessionCookie(session.id);
+  cookies().set(
+    sessionCookie.name,
+    sessionCookie.value,
+    sessionCookie.attributes
+  );
+}

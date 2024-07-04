@@ -16,11 +16,17 @@
   "errors": {
     "error": "Algo deu errado",
     "TOO_MANY_REQUESTS": "Muitas requisições, tente novamente mais tarde",
-    "NOT_AUTHORIZED": "Nome de usuário ou senha inválidos",
-    "EXISTING_USER_NAME": "Nome de usuário já existe",
-    "username-required": "Nome de usuário é obrigatório",
+    "NOT_AUTHORIZED": "Email ou senha inválidos",
+    "EXISTING_USER_NAME": "Email já existe",
+    "EMAIL_NOT_VERIFIED": "Email não verificado",
+    "USER_NOT_FOUND": "Usuário não encontrado",
+    "INVALID_CODE": "Código inválido",
+    "email-required": "Email é obrigatório",
+    "email-invalid": "Email inválido",
     "password-required": "Senha é obrigatória",
-    "password-invalid-size": "A senha deve ter entre 6 e 255 caracteres"
+    "password-invalid-size": "A senha deve ter entre 6 e 255 caracteres",
+    "password-mismatch": "Senhas não conferem",
+    "invalid-token": "O token fornecido é inválido ou expirou."
   },
   "search": {
     "search": "Buscar",
@@ -28,5 +34,8 @@
   },
   "email": "Email",
   "password": "Senha",
-  "continue": "Continuar"
+  "confirm-password": "Confirmar Senha",
+  "continue": "Continuar",
+  "please-wait": "Por favor, aguarde...",
+  "forgot-password-email-sent": "Um email foi enviado para redefinir sua senha"
 }

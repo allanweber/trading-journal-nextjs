@@ -1,6 +1,6 @@
 'use server';
 
-import { logout } from '@/lib/user-auth';
+import { logout } from '@/lib/auth';
 import { getLocale } from 'next-intl/server';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';

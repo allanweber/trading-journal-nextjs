@@ -2,7 +2,7 @@
 
 import { lucia } from '@/lib/auth';
 import { unauthenticatedAction } from '@/lib/safe-action';
-import { createUser } from '@/lib/user-auth';
+import { createUser } from '@/services/user.service';
 import { cookies } from 'next/headers';
 import { z } from 'zod';
 
@@ -10,11 +10,9 @@ export const signup = unauthenticatedAction
   .createServerAction()
   .input(
     z.object({
-      username: z
-        .string({ message: 'username-required' })
-        .min(4, { message: 'user-name-invalid-size' })
-        .max(31, { message: 'user-name-invalid-size' })
-        .regex(/^[a-z0-9_-]+$/, { message: 'username-invalid-characters' }),
+      email: z
+        .string({ message: 'email-required' })
+        .regex(/.+@.+/, { message: 'email-invalid' }),
       password: z
         .string({ message: 'password-required' })
         .min(6, { message: 'password-invalid-size' })
@@ -25,7 +23,7 @@ export const signup = unauthenticatedAction
     }
   )
   .handler(async ({ input }) => {
-    const userId = await createUser(input.username, input.password);
+    const userId = await createUser(input.email, input.password);
 
     const session = await lucia.createSession(userId, {});
     const sessionCookie = lucia.createSessionCookie(session.id);
