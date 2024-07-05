@@ -46,7 +46,6 @@ export const resetPassword = unauthenticatedAction
     }
   )
   .handler(async ({ input }) => {
-    console.log('INPUT ===>>', input);
     await changePassword(input.token, input.email, input.password);
     return { success: true };
   });

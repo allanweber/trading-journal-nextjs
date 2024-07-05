@@ -5,6 +5,7 @@ import { ActionError } from '@/lib/safe-action';
 import { and, eq } from 'drizzle-orm';
 import { TimeSpan, createDate, isWithinExpirationDate } from 'oslo';
 import { alphabet, generateRandomString } from 'oslo/crypto';
+import { sendActivationEmail } from './emails.service';
 
 export async function sendVerificationEmail(email: string) {
   const registeredUser = await db.query.user.findFirst({
@@ -30,6 +31,8 @@ export async function sendVerificationEmail(email: string) {
         expires_at: createDate(new TimeSpan(15, 'm')),
       })
       .execute();
+
+    await sendActivationEmail(email, verificationCode);
   });
 }
 

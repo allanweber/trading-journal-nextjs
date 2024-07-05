@@ -12,6 +12,8 @@ const publicPages = [
   '/auth/forgot-password',
   '/auth/reset-password',
   '/auth/verify-email',
+  '/api/auth/google',
+  '/api/auth/google/callback',
 ];
 
 const intlMiddleware = createMiddleware({

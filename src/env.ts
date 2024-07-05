@@ -5,10 +5,13 @@ import { ZodError, z } from 'zod';
 const EnvSchema = z.object({
   NODE_ENV: z.string().default('development'),
   HOST_NAME: z.string(),
+  APP_NAME: z.string(),
   DATABASE_URL: z.string(),
   DATABASE_AUTH_TOKEN: z.string(),
   NEXT_PUBLIC_RECAPTCHA_SITE_KEY: z.string(),
   GOOGLE_API_KEY: z.string(),
+  EMAIL_SERVER_PASSWORD: z.string(),
+  EMAIL_FROM: z.string(),
 });
 
 export type EnvSchema = z.infer<typeof EnvSchema>;

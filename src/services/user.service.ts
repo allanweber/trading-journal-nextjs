@@ -11,6 +11,7 @@ import { eq } from 'drizzle-orm';
 import { generateIdFromEntropySize } from 'lucia';
 import { TimeSpan, createDate, isWithinExpirationDate } from 'oslo';
 import { generateCode } from './email-verification.service';
+import { sendActivationEmail, sendResetPasswordEmail } from './emails.service';
 
 export async function createUser(email: string, password: string) {
   const registeredUser = await db.query.user.findFirst({
@@ -50,10 +51,10 @@ export async function createUser(email: string, password: string) {
       })
       .execute();
 
+    await sendActivationEmail(email, code);
+
     return createdUser;
   });
-
-  //TODO: Send email with code
 
   return createdUser.id;
 }
@@ -108,10 +109,9 @@ export async function changePasswordRequest(email: string) {
         expires_at: createDate(new TimeSpan(15, 'm')),
       })
       .execute();
-  });
 
-  console.log('TOKEN ID ===>>', token);
-  //TODO: Send email with token Id
+    await sendResetPasswordEmail(email, token);
+  });
 }
 
 export async function changePassword(

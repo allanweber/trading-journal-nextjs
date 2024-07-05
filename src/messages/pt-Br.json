@@ -126,5 +126,14 @@
     "forgot-password-description": "Digite seu email abaixo e enviaremos um link para redefinir sua senha.",
     "reset-password-description": "Digite sua nova senha abaixo.",
     "invalid-token": "O token fornecido é inválido ou expirou. Solicite um novo para redefinir sua senha clicando no link abaixo."
+  },
+  "emails": {
+    "all-rights-reserved": "Todos os direitos reservados",
+    "use-the-code": "Use o código abaixo para verificar seu endereço de e-mail",
+    "verify-email": "Verifique seu email",
+    "activate-account": "Ative sua conta",
+    "reset-password-subject": "Mude sua senha",
+    "reset-password": "Redefinir sua senha",
+    "reset-password-description": "Clique no botão abaixo para redefinir sua senha ou copie e cole o link no seu navegador. Se você não solicitou uma redefinição de senha, ignore este e-mail ou entre em contato com o suporte."
   }
 }
