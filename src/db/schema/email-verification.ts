@@ -7,7 +7,8 @@ const emailVerification = sqliteTable('email_verification', {
   code: text('code').notNull(),
   userId: text('user_id')
     .notNull()
-    .references(() => user.id),
+    .unique()
+    .references(() => user.id, { onDelete: 'cascade' }),
   email: text('email').notNull(),
   expires_at: integer('expires_at', { mode: 'timestamp' }).notNull(),
 });

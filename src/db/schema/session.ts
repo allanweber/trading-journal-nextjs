@@ -6,7 +6,7 @@ const session = sqliteTable('session', {
   id: text('id').notNull().primaryKey(),
   userId: text('user_id')
     .notNull()
-    .references(() => user.id),
+    .references(() => user.id, { onDelete: 'cascade' }),
   expiresAt: integer('expires_at').notNull(),
 });
 

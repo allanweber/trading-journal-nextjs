@@ -6,7 +6,8 @@ const passwordReset = sqliteTable('password_reset', {
   tokenHash: text('token_hash').notNull().unique(),
   userId: text('user_id')
     .notNull()
-    .references(() => user.id),
+    .unique()
+    .references(() => user.id, { onDelete: 'cascade' }),
   email: text('email').notNull(),
   expires_at: integer('expires_at', { mode: 'timestamp' }).notNull(),
 });

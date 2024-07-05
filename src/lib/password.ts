@@ -12,15 +12,22 @@ const passwordConfig = {
   parallelism: 1,
 };
 
-export const hashPassword = async (password: string) => {
-  return hash(password, passwordConfig);
+export const hashPassword = async (password: string, saltPassword: string) => {
+  return hash(password, {
+    salt: Buffer.from(saltPassword, 'hex'),
+    ...passwordConfig,
+  });
 };
 
 export const verifyPassword = async (
   hashedPassword: string,
-  password: string
+  password: string,
+  saltPassword: string
 ) => {
-  return verify(hashedPassword, password, passwordConfig);
+  return verify(hashedPassword, password, {
+    salt: Buffer.from(saltPassword, 'hex'),
+    ...passwordConfig,
+  });
 };
 
 export const generateToken = async () => {

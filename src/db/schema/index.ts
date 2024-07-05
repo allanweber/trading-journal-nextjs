@@ -9,3 +9,5 @@ export {
 } from './password-reset';
 export { default as session, sessionRelations } from './session';
 export { default as user } from './user';
+export { default as userAccounts, userAccountsRelations } from './user-account';
+export { profilesRelations, default as userProfile } from './user-profile';

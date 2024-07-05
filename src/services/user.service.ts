@@ -1,5 +1,11 @@
 import db from '@/db';
-import { emailVerification, passwordReset, user } from '@/db/schema';
+import {
+  emailVerification,
+  passwordReset,
+  user,
+  userAccounts,
+  userProfile,
+} from '@/db/schema';
 import {
   generateToken,
   hashPassword,
@@ -22,7 +28,8 @@ export async function createUser(email: string, password: string) {
     throw new ActionError('EXISTING_USER_NAME', 'User already exists');
   }
 
-  const passwordHash = await hashPassword(password);
+  const salt = generateIdFromEntropySize(16);
+  const passwordHash = await hashPassword(password, salt);
   const userId = generateIdFromEntropySize(16);
   const code = generateCode();
 
@@ -32,10 +39,27 @@ export async function createUser(email: string, password: string) {
       .values({
         id: userId,
         email: email,
-        password_hash: passwordHash,
         email_verified: false,
       })
       .returning();
+
+    await trans
+      .insert(userAccounts)
+      .values({
+        userId,
+        accountType: 'email',
+        passwordHash,
+        salt,
+      })
+      .execute();
+
+    await trans
+      .insert(userProfile)
+      .values({
+        userId,
+        displayName: email,
+      })
+      .execute();
 
     await trans
       .delete(emailVerification)
@@ -72,11 +96,24 @@ export async function verifyCredentials(email: string, password: string) {
     throw new ActionError('EMAIL_NOT_VERIFIED', 'Email not verified');
   }
 
-  const validPassword = await verifyPassword(
-    registeredUser.password_hash,
-    password
-  );
-  if (!validPassword) {
+  const userAccount = await db.query.userAccounts.findFirst({
+    where: eq(userAccounts.userId, registeredUser.id),
+  });
+
+  if (!userAccount) {
+    throw new ActionError('NOT_AUTHORIZED', 'Invalid user or password');
+  }
+
+  if (userAccount.accountType === 'email') {
+    const validPassword = await verifyPassword(
+      userAccount.passwordHash!,
+      password,
+      userAccount.salt!
+    );
+    if (!validPassword) {
+      throw new ActionError('NOT_AUTHORIZED', 'Invalid user or password');
+    }
+  } else {
     throw new ActionError('NOT_AUTHORIZED', 'Invalid user or password');
   }
 
@@ -129,12 +166,14 @@ export async function changePassword(
     throw new ActionError('invalid-token', 'Invalid token');
   }
 
-  const passwordHash = await hashPassword(password);
+  const salt = generateIdFromEntropySize(16);
+  const passwordHash = await hashPassword(password, salt);
   await db.transaction(async (trans) => {
     await trans
-      .update(user)
+      .update(userAccounts)
       .set({
-        password_hash: passwordHash,
+        passwordHash,
+        salt,
       })
       .where(eq(user.id, userId))
       .execute();
