@@ -1,9 +1,8 @@
 'use server';
 
-import { lucia } from '@/lib/auth';
 import { unauthenticatedAction } from '@/lib/safe-action';
+import { setSession } from '@/lib/session';
 import { createUser } from '@/services/user.service';
-import { cookies } from 'next/headers';
 import { z } from 'zod';
 
 export const signup = unauthenticatedAction
@@ -25,13 +24,7 @@ export const signup = unauthenticatedAction
   .handler(async ({ input }) => {
     const userId = await createUser(input.email, input.password);
 
-    const session = await lucia.createSession(userId, {});
-    const sessionCookie = lucia.createSessionCookie(session.id);
-    cookies().set(
-      sessionCookie.name,
-      sessionCookie.value,
-      sessionCookie.attributes
-    );
+    await setSession(userId);
 
     return { success: true };
   });

@@ -1,4 +1,5 @@
 import { createServerActionProcedure } from 'zsa';
+import { validateRequest } from './auth';
 import { rateLimitByKey } from './limiter';
 
 const GLOBAL_USER = 'unauthenticated-global';
@@ -11,8 +12,12 @@ export const unauthenticatedAction = createServerActionProcedure().handler(
 
 export const authenticatedAction = createServerActionProcedure().handler(
   async () => {
-    //TODO: Implement authentication
-    await rateLimitByKey(GLOBAL_USER, 10, 10000);
+    const { user } = await validateRequest();
+    if (!user) {
+      throw new ActionError('NOT_AUTHORIZED', 'User not authorized');
+    }
+    await rateLimitByKey(user.id, 10, 10000);
+    return user;
   }
 );
 

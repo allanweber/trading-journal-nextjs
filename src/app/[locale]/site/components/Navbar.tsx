@@ -50,7 +50,7 @@ export default function Navbar({
               href="/"
               className="ml-2 font-bold text-xl flex"
             >
-              <Icons.Logo />
+              <Icons.Logo width={25} height={25} />
               Trading Journal
             </Link>
           </NavigationMenuItem>

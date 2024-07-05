@@ -125,7 +125,8 @@
     "reset-password": "Reset your password",
     "forgot-password-description": "Enter your email address and we will send you a link to reset your password.",
     "reset-password-description": "Enter your new password below.",
-    "invalid-token": "The token provided is invalid or has expired. Please request a new one to reset your password clicking on the link below."
+    "invalid-token": "The token provided is invalid or has expired. Please request a new one to reset your password clicking on the link below.",
+    "signin-with-google": "Sign in with Google"
   },
   "emails": {
     "all-rights-reserved": "All rights reserved",

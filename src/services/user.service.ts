@@ -13,16 +13,21 @@ import {
   verifyPassword,
 } from '@/lib/password';
 import { ActionError } from '@/lib/safe-action';
+import { GoogleUser } from '@/types';
 import { eq } from 'drizzle-orm';
 import { generateIdFromEntropySize } from 'lucia';
 import { TimeSpan, createDate, isWithinExpirationDate } from 'oslo';
 import { generateCode } from './email-verification.service';
 import { sendActivationEmail, sendResetPasswordEmail } from './emails.service';
 
-export async function createUser(email: string, password: string) {
-  const registeredUser = await db.query.user.findFirst({
+export async function getUserByEmail(email: string) {
+  return await db.query.user.findFirst({
     where: eq(user.email, email),
   });
+}
+
+export async function createUser(email: string, password: string) {
+  const registeredUser = await getUserByEmail(email);
 
   if (registeredUser) {
     throw new ActionError('EXISTING_USER_NAME', 'User already exists');
@@ -84,9 +89,7 @@ export async function createUser(email: string, password: string) {
 }
 
 export async function verifyCredentials(email: string, password: string) {
-  const registeredUser = await db.query.user.findFirst({
-    where: eq(user.email, email),
-  });
+  const registeredUser = await getUserByEmail(email);
 
   if (!registeredUser) {
     throw new ActionError('NOT_AUTHORIZED', 'Invalid user or password');
@@ -121,9 +124,7 @@ export async function verifyCredentials(email: string, password: string) {
 }
 
 export async function changePasswordRequest(email: string) {
-  const registeredUser = await db.query.user.findFirst({
-    where: eq(user.email, email),
-  });
+  const registeredUser = await getUserByEmail(email);
 
   if (!registeredUser) {
     throw new ActionError('USER_NOT_FOUND', 'User not found');
@@ -201,4 +202,47 @@ export async function validateChangePasswordToken(token: string) {
   }
 
   return passwordResetRecord.userId;
+}
+
+export async function getAccountByGoogleId(googleId: string) {
+  return await db.query.userAccounts.findFirst({
+    where: eq(userAccounts.googleId, googleId),
+  });
+}
+
+export async function createGoogleUser(googleUser: GoogleUser) {
+  let existingUser = await getUserByEmail(googleUser.email);
+
+  const userId = await db.transaction(async (trans) => {
+    if (!existingUser) {
+      const userId = generateIdFromEntropySize(16);
+      const [createdUser] = await trans
+        .insert(user)
+        .values({
+          id: userId,
+          email: googleUser.email,
+          email_verified: true,
+        })
+        .returning();
+      existingUser = createdUser;
+    }
+
+    await trans.insert(userAccounts).values({
+      userId: existingUser.id,
+      accountType: 'google',
+      googleId: googleUser.sub,
+    });
+
+    await trans.insert(userProfile).values({
+      userId: existingUser.id,
+      displayName: googleUser.name,
+      fistName: googleUser.given_name,
+      lastName: googleUser.family_name,
+      image: googleUser.picture,
+    });
+
+    return existingUser.id;
+  });
+
+  return userId;
 }

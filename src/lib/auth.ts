@@ -5,8 +5,11 @@ import { Lucia } from 'lucia';
 import { cookies } from 'next/headers';
 import { cache } from 'react';
 
+import env from '@/env';
 import { verifyCredentials } from '@/services/user.service';
+import { Google } from 'arctic';
 import type { Session, User } from 'lucia';
+import { setSession } from './session';
 
 const adapter = new DrizzleSQLiteAdapter(db, session, user);
 
@@ -82,11 +85,11 @@ export async function logout() {
 
 export async function login(email: string, password: string) {
   const userId = await verifyCredentials(email, password);
-  const session = await lucia.createSession(userId, {});
-  const sessionCookie = lucia.createSessionCookie(session.id);
-  cookies().set(
-    sessionCookie.name,
-    sessionCookie.value,
-    sessionCookie.attributes
-  );
+  await setSession(userId);
 }
+
+export const googleAuth = new Google(
+  env.GOOGLE_CLIENT_ID,
+  env.GOOGLE_CLIENT_SECRET,
+  `${env.HOST_NAME}/api/auth/google/callback`
+);

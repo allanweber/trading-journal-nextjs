@@ -6,11 +6,10 @@ import { and, eq } from 'drizzle-orm';
 import { TimeSpan, createDate, isWithinExpirationDate } from 'oslo';
 import { alphabet, generateRandomString } from 'oslo/crypto';
 import { sendActivationEmail } from './emails.service';
+import { getUserByEmail } from './user.service';
 
 export async function sendVerificationEmail(email: string) {
-  const registeredUser = await db.query.user.findFirst({
-    where: eq(user.email, email),
-  });
+  const registeredUser = await getUserByEmail(email);
 
   if (!registeredUser) {
     throw new ActionError('USER_NOT_FOUND', 'User not found');
