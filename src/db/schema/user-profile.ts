@@ -15,6 +15,8 @@ const userProfile = sqliteTable('user_profile', {
   imageId: text('image_id'),
   image: text('image'),
   bio: text('bio').notNull().default(''),
+  locale: text('locale').notNull().default('en'),
+  theme: text('theme').notNull().default('system'),
 });
 
 export const profilesRelations = relations(userProfile, ({ one }) => ({

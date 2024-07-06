@@ -1,11 +1,24 @@
-import db from '@/db';
+import { createTransaction } from '@/db';
+import { createOrganization } from '@/db/repositories/organisation.repository';
 import {
-  emailVerification,
-  passwordReset,
-  user,
-  userAccounts,
-  userProfile,
-} from '@/db/schema';
+  createPasswordReset,
+  deleteAllByUserId,
+  getPasswordResetByTokenHash,
+  getPasswordResetByUserId,
+} from '@/db/repositories/passwordReset.repository';
+import { createUser, getUserByEmail } from '@/db/repositories/user.repository';
+import {
+  createEmailAccount,
+  createGoogleAccount,
+  getAccountByUserId,
+  linkGoogleAccount,
+  updatePassword,
+} from '@/db/repositories/userAccounts.repository';
+import {
+  createProfile,
+  createStartProfile,
+  updateWithGoogle,
+} from '@/db/repositories/userProfile.repository';
 import {
   generateToken,
   hashPassword,
@@ -14,19 +27,12 @@ import {
 } from '@/lib/password';
 import { ActionError } from '@/lib/safe-action';
 import { GoogleUser } from '@/types';
-import { eq } from 'drizzle-orm';
 import { generateIdFromEntropySize } from 'lucia';
 import { TimeSpan, createDate, isWithinExpirationDate } from 'oslo';
-import { generateCode } from './email-verification.service';
-import { sendActivationEmail, sendResetPasswordEmail } from './emails.service';
+import { sendVerificationEmail } from './email-verification.service';
+import { sendResetPasswordEmail } from './emails.service';
 
-export async function getUserByEmail(email: string) {
-  return await db.query.user.findFirst({
-    where: eq(user.email, email),
-  });
-}
-
-export async function createUser(email: string, password: string) {
+export async function createPasswordUser(email: string, password: string) {
   const registeredUser = await getUserByEmail(email);
 
   if (registeredUser) {
@@ -35,57 +41,21 @@ export async function createUser(email: string, password: string) {
 
   const salt = generateIdFromEntropySize(16);
   const passwordHash = await hashPassword(password, salt);
-  const userId = generateIdFromEntropySize(16);
-  const code = generateCode();
+  let userId;
 
-  const createdUser = await db.transaction(async (trans) => {
-    const [createdUser] = await trans
-      .insert(user)
-      .values({
-        id: userId,
-        email: email,
-        email_verified: false,
-      })
-      .returning();
+  await createTransaction(async (trans) => {
+    const org = await createOrganization(email, trans);
+    const createdUser = await createUser(email, org.id, false, trans);
+    userId = createdUser.id;
 
-    await trans
-      .insert(userAccounts)
-      .values({
-        userId,
-        accountType: 'email',
-        passwordHash,
-        salt,
-      })
-      .execute();
-
-    await trans
-      .insert(userProfile)
-      .values({
-        userId,
-        displayName: email,
-      })
-      .execute();
-
-    await trans
-      .delete(emailVerification)
-      .where(eq(emailVerification.userId, userId));
-
-    await trans
-      .insert(emailVerification)
-      .values({
-        code,
-        userId,
-        email,
-        expires_at: createDate(new TimeSpan(15, 'm')),
-      })
-      .execute();
-
-    await sendActivationEmail(email, code);
+    await createEmailAccount(userId, passwordHash, salt, trans);
+    await createStartProfile(userId, email, trans);
+    await sendVerificationEmail(email, trans);
 
     return createdUser;
   });
 
-  return createdUser.id;
+  return userId!;
 }
 
 export async function verifyCredentials(email: string, password: string) {
@@ -99,9 +69,7 @@ export async function verifyCredentials(email: string, password: string) {
     throw new ActionError('EMAIL_NOT_VERIFIED', 'Email not verified');
   }
 
-  const userAccount = await db.query.userAccounts.findFirst({
-    where: eq(userAccounts.userId, registeredUser.id),
-  });
+  const userAccount = await getAccountByUserId(registeredUser.id);
 
   if (!userAccount) {
     throw new ActionError('NOT_AUTHORIZED', 'Invalid user or password');
@@ -133,21 +101,15 @@ export async function changePasswordRequest(email: string) {
   const token = await generateToken();
   const tokenHash = await hashToken(token);
 
-  await db.transaction(async (trans) => {
-    await trans
-      .delete(passwordReset)
-      .where(eq(passwordReset.userId, registeredUser.id));
-
-    await trans
-      .insert(passwordReset)
-      .values({
-        tokenHash,
-        userId: registeredUser.id,
-        email: registeredUser.email,
-        expires_at: createDate(new TimeSpan(15, 'm')),
-      })
-      .execute();
-
+  await createTransaction(async (trans) => {
+    await deleteAllByUserId(registeredUser.id, trans);
+    await createPasswordReset(
+      registeredUser.id,
+      tokenHash,
+      email,
+      createDate(new TimeSpan(15, 'm')),
+      trans
+    );
     await sendResetPasswordEmail(email, token);
   });
 }
@@ -159,9 +121,7 @@ export async function changePassword(
 ) {
   const userId = await validateChangePasswordToken(token);
 
-  const passwordChangeRequest = await db.query.passwordReset.findFirst({
-    where: eq(passwordReset.userId, userId),
-  });
+  const passwordChangeRequest = await getPasswordResetByUserId(userId);
 
   if (!passwordChangeRequest || passwordChangeRequest.email !== email) {
     throw new ActionError('invalid-token', 'Invalid token');
@@ -169,29 +129,16 @@ export async function changePassword(
 
   const salt = generateIdFromEntropySize(16);
   const passwordHash = await hashPassword(password, salt);
-  await db.transaction(async (trans) => {
-    await trans
-      .update(userAccounts)
-      .set({
-        passwordHash,
-        salt,
-      })
-      .where(eq(user.id, userId))
-      .execute();
-
-    await trans
-      .delete(passwordReset)
-      .where(eq(passwordReset.userId, userId))
-      .execute();
+  await createTransaction(async (trans) => {
+    await updatePassword(userId, passwordHash, salt, trans);
+    await deleteAllByUserId(userId, trans);
   });
 }
 
 export async function validateChangePasswordToken(token: string) {
   const compareToken = await hashToken(token);
 
-  const passwordResetRecord = await db.query.passwordReset.findFirst({
-    where: eq(passwordReset.tokenHash, compareToken),
-  });
+  const passwordResetRecord = await getPasswordResetByTokenHash(compareToken);
 
   if (!passwordResetRecord) {
     throw new ActionError('invalid-token', 'Invalid token');
@@ -204,45 +151,35 @@ export async function validateChangePasswordToken(token: string) {
   return passwordResetRecord.userId;
 }
 
-export async function getAccountByGoogleId(googleId: string) {
-  return await db.query.userAccounts.findFirst({
-    where: eq(userAccounts.googleId, googleId),
-  });
-}
-
 export async function createGoogleUser(googleUser: GoogleUser) {
   let existingUser = await getUserByEmail(googleUser.email);
 
-  const userId = await db.transaction(async (trans) => {
+  await createTransaction(async (trans) => {
     if (!existingUser) {
-      const userId = generateIdFromEntropySize(16);
-      const [createdUser] = await trans
-        .insert(user)
-        .values({
-          id: userId,
-          email: googleUser.email,
-          email_verified: true,
-        })
-        .returning();
+      const org = await createOrganization(googleUser.email, trans);
+
+      const createdUser = await createUser(
+        googleUser.email,
+        org.id,
+        true,
+        trans
+      );
       existingUser = createdUser;
+      await createGoogleAccount(existingUser.id, googleUser.sub, trans);
+      await createProfile(
+        existingUser.id,
+        googleUser.name,
+        googleUser.given_name,
+        googleUser.family_name,
+        googleUser.picture,
+        googleUser.locale,
+        trans
+      );
+    } else {
+      await linkGoogleAccount(existingUser.id, googleUser.sub, trans);
+      await updateWithGoogle(existingUser.id, googleUser, trans);
     }
-
-    await trans.insert(userAccounts).values({
-      userId: existingUser.id,
-      accountType: 'google',
-      googleId: googleUser.sub,
-    });
-
-    await trans.insert(userProfile).values({
-      userId: existingUser.id,
-      displayName: googleUser.name,
-      fistName: googleUser.given_name,
-      lastName: googleUser.family_name,
-      image: googleUser.picture,
-    });
-
-    return existingUser.id;
   });
 
-  return userId;
+  return existingUser?.id!;
 }

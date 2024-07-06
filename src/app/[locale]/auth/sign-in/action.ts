@@ -1,7 +1,7 @@
 'use server';
 
 import { login } from '@/lib/auth';
-import { unauthenticatedAction } from '@/lib/safe-action';
+import { ActionError, unauthenticatedAction } from '@/lib/safe-action';
 import { z } from 'zod';
 
 export const signin = unauthenticatedAction
@@ -21,7 +21,14 @@ export const signin = unauthenticatedAction
     }
   )
   .handler(async ({ input }) => {
-    await login(input.email, input.password);
-
-    return { success: true };
+    try {
+      await login(input.email, input.password);
+      return { success: true };
+    } catch (error) {
+      if (error instanceof ActionError) {
+        throw error;
+      }
+      console.error(error);
+      throw new ActionError('SOMETHING-WRONG', 'Something went wrong');
+    }
   });

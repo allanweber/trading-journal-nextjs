@@ -26,7 +26,8 @@
     "password-required": "Senha é obrigatória",
     "password-invalid-size": "A senha deve ter entre 6 e 255 caracteres",
     "password-mismatch": "Senhas não conferem",
-    "invalid-token": "O token fornecido é inválido ou expirou."
+    "invalid-token": "O token fornecido é inválido ou expirou.",
+    "SOMETHING-WRONG": "Algo deu errado"
   },
   "search": {
     "search": "Buscar",

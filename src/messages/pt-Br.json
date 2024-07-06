@@ -136,5 +136,10 @@
     "reset-password-subject": "Mude sua senha",
     "reset-password": "Redefinir sua senha",
     "reset-password-description": "Clique no botão abaixo para redefinir sua senha ou copie e cole o link no seu navegador. Se você não solicitou uma redefinição de senha, ignore este e-mail ou entre em contato com o suporte."
+  },
+  "errors": {
+    "SOMETHING-WRONG": "Algo deu errado",
+    "TOO_MANY_REQUESTS": "Muitas requisições, tente novamente mais tarde",
+    "NOT_AUTHORIZED": "Email ou senha inválidos"
   }
 }

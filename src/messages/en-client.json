@@ -26,7 +26,8 @@
     "password-required": "Password is required",
     "password-invalid-size": "Password must be between 6 and 255 characters",
     "password-mismatch": "Passwords do not match",
-    "invalid-token": "The token provided is invalid or has expired."
+    "invalid-token": "The token provided is invalid or has expired.",
+    "SOMETHING-WRONG": "Something went wrong"
   },
   "search": {
     "search": "Search",

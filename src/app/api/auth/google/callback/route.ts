@@ -1,10 +1,8 @@
+import { getAccountByGoogleId } from '@/db/repositories/userAccounts.repository';
 import { googleAuth } from '@/lib/auth';
 import { constants } from '@/lib/config';
 import { setSession } from '@/lib/session';
-import {
-  createGoogleUser,
-  getAccountByGoogleId,
-} from '@/services/user.service';
+import { createGoogleUser } from '@/services/user.service';
 import { GoogleUser } from '@/types';
 import { OAuth2RequestError } from 'arctic';
 import { cookies } from 'next/headers';

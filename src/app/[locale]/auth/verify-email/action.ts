@@ -1,6 +1,6 @@
 'use server';
 
-import { unauthenticatedAction } from '@/lib/safe-action';
+import { ActionError, unauthenticatedAction } from '@/lib/safe-action';
 import {
   sendVerificationEmail,
   verifyEmailCode,
@@ -21,8 +21,16 @@ export const verify = unauthenticatedAction
     }
   )
   .handler(async ({ input }) => {
-    await verifyEmailCode(input.code);
-    return { success: true };
+    try {
+      await verifyEmailCode(input.code);
+      return { success: true };
+    } catch (error) {
+      if (error instanceof ActionError) {
+        throw error;
+      }
+      console.error(error);
+      throw new ActionError('SOMETHING-WRONG', 'Something went wrong');
+    }
   });
 
 export const sendAgain = unauthenticatedAction
@@ -38,6 +46,14 @@ export const sendAgain = unauthenticatedAction
     }
   )
   .handler(async ({ input }) => {
-    await sendVerificationEmail(input.email);
-    return { success: true };
+    try {
+      await sendVerificationEmail(input.email);
+      return { success: true };
+    } catch (error) {
+      if (error instanceof ActionError) {
+        throw error;
+      }
+      console.error(error);
+      throw new ActionError('SOMETHING-WRONG', 'Something went wrong');
+    }
   });
