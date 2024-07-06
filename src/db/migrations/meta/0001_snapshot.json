@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "880fc937-e553-4b45-a2c9-551648ae2721",
+  "id": "f5caf7e1-e9c0-449a-8c11-96a5fdfbd554",
   "prevId": "343975f5-0ccd-412c-a4b1-94809491f375",
   "tables": {
     "email_verification": {
@@ -389,8 +389,8 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "user-plans": {
-      "name": "user-plans",
+    "user_plans": {
+      "name": "user_plans",
       "columns": {
         "id": {
           "name": "id",
@@ -413,13 +413,6 @@
           "notNull": true,
           "autoincrement": false
         },
-        "paid_at": {
-          "name": "paid_at",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
         "expires_at": {
           "name": "expires_at",
           "type": "integer",
@@ -430,9 +423,9 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "user-plans_user_id_user_id_fk": {
-          "name": "user-plans_user_id_user_id_fk",
-          "tableFrom": "user-plans",
+        "user_plans_user_id_user_id_fk": {
+          "name": "user_plans_user_id_user_id_fk",
+          "tableFrom": "user_plans",
           "tableTo": "user",
           "columnsFrom": [
             "user_id"

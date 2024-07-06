@@ -46,11 +46,10 @@ CREATE TABLE `user_accounts` (
 	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
-CREATE TABLE `user-plans` (
+CREATE TABLE `user_plans` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`user_id` text NOT NULL,
 	`role` text NOT NULL,
-	`paid_at` integer,
 	`expires_at` integer,
 	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
 );

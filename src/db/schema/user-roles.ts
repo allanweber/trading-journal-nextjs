@@ -3,6 +3,7 @@ import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 import user from './user';
 
 export const roleEnum = ['admin', 'user'] as const;
+export type Role = (typeof roleEnum)[number];
 
 const userRoles = sqliteTable('user_roles', {
   id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),

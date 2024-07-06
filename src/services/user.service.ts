@@ -14,11 +14,13 @@ import {
   linkGoogleAccount,
   updatePassword,
 } from '@/db/repositories/userAccounts.repository';
+import { addFreePlan } from '@/db/repositories/userPlans.repository';
 import {
   createProfile,
   createStartProfile,
   updateWithGoogle,
 } from '@/db/repositories/userProfile.repository';
+import { addUserRole } from '@/db/repositories/userRoles.repository';
 import {
   generateToken,
   hashPassword,
@@ -51,11 +53,49 @@ export async function createPasswordUser(email: string, password: string) {
     await createEmailAccount(userId, passwordHash, salt, trans);
     await createStartProfile(userId, email, trans);
     await sendVerificationEmail(email, trans);
+    await addUserRole(userId, 'admin', trans);
+    await addFreePlan(createdUser.id, trans);
 
     return createdUser;
   });
 
   return userId!;
+}
+
+export async function createGoogleUser(googleUser: GoogleUser) {
+  let existingUser = await getUserByEmail(googleUser.email);
+
+  await createTransaction(async (trans) => {
+    if (!existingUser) {
+      const org = await createOrganization(googleUser.email, trans);
+
+      const createdUser = await createUser(
+        googleUser.email,
+        org.id,
+        true,
+        trans
+      );
+      await addUserRole(createdUser.id, 'admin', trans);
+      await addFreePlan(createdUser.id, trans);
+
+      existingUser = createdUser;
+      await createGoogleAccount(existingUser.id, googleUser.sub, trans);
+      await createProfile(
+        existingUser.id,
+        googleUser.name,
+        googleUser.given_name,
+        googleUser.family_name,
+        googleUser.picture,
+        googleUser.locale,
+        trans
+      );
+    } else {
+      await linkGoogleAccount(existingUser.id, googleUser.sub, trans);
+      await updateWithGoogle(existingUser.id, googleUser, trans);
+    }
+  });
+
+  return existingUser?.id!;
 }
 
 export async function verifyCredentials(email: string, password: string) {
@@ -149,37 +189,4 @@ export async function validateChangePasswordToken(token: string) {
   }
 
   return passwordResetRecord.userId;
-}
-
-export async function createGoogleUser(googleUser: GoogleUser) {
-  let existingUser = await getUserByEmail(googleUser.email);
-
-  await createTransaction(async (trans) => {
-    if (!existingUser) {
-      const org = await createOrganization(googleUser.email, trans);
-
-      const createdUser = await createUser(
-        googleUser.email,
-        org.id,
-        true,
-        trans
-      );
-      existingUser = createdUser;
-      await createGoogleAccount(existingUser.id, googleUser.sub, trans);
-      await createProfile(
-        existingUser.id,
-        googleUser.name,
-        googleUser.given_name,
-        googleUser.family_name,
-        googleUser.picture,
-        googleUser.locale,
-        trans
-      );
-    } else {
-      await linkGoogleAccount(existingUser.id, googleUser.sub, trans);
-      await updateWithGoogle(existingUser.id, googleUser, trans);
-    }
-  });
-
-  return existingUser?.id!;
 }

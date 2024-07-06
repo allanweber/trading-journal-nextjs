@@ -126,7 +126,8 @@
     "forgot-password-description": "Digite seu email abaixo e enviaremos um link para redefinir sua senha.",
     "reset-password-description": "Digite sua nova senha abaixo.",
     "invalid-token": "O token fornecido é inválido ou expirou. Solicite um novo para redefinir sua senha clicando no link abaixo.",
-    "signin-with-google": "Entrar com o Google"
+    "signin-with-google": "Entrar com o Google",
+    "signup-with-google": "Entrar com o Google"
   },
   "emails": {
     "all-rights-reserved": "Todos os direitos reservados",
