@@ -74,3 +74,9 @@ export const updateWithGoogle = async (
       .where(eq(userProfile.userId, userId));
   }
 };
+
+export const getByUserId = async (userId: string, trans = db) => {
+  return await trans.query.userProfile.findFirst({
+    where: eq(userProfile.userId, userId),
+  });
+};

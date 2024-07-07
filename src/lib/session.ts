@@ -11,3 +11,12 @@ export async function setSession(userId: UserId) {
     sessionCookie.attributes
   );
 }
+
+export async function clearSession() {
+  const sessionCookie = lucia.createBlankSessionCookie();
+  cookies().set(
+    sessionCookie.name,
+    sessionCookie.value,
+    sessionCookie.attributes
+  );
+}

@@ -5,11 +5,13 @@ import { Lucia } from 'lucia';
 import { cookies } from 'next/headers';
 import { cache } from 'react';
 
+import { getByUserId } from '@/db/repositories/userProfile.repository';
 import env from '@/env';
 import { verifyCredentials } from '@/services/user.service';
+import { UserDisplay } from '@/types';
 import { Google } from 'arctic';
 import type { Session, User } from 'lucia';
-import { setSession } from './session';
+import { clearSession, setSession } from './session';
 
 const adapter = new DrizzleSQLiteAdapter(db, session, user);
 
@@ -63,17 +65,25 @@ export const validateRequest = cache(
         );
       }
       if (!result.session) {
-        const sessionCookie = lucia.createBlankSessionCookie();
-        cookies().set(
-          sessionCookie.name,
-          sessionCookie.value,
-          sessionCookie.attributes
-        );
+        await clearSession();
       }
     } catch {}
     return result;
   }
 );
+
+export const getAuthenticatedUser = cache(async (): Promise<UserDisplay> => {
+  const session = await validateRequest();
+  if (!session || !session.user) {
+    await clearSession();
+  }
+  const profile = await getByUserId(session.user?.id!);
+  return {
+    userId: session.user?.id!,
+    displayName: profile?.displayName || session?.user?.email!,
+    pictureUrl: profile?.image || undefined,
+  };
+});
 
 export async function logout() {
   const { session } = await validateRequest();

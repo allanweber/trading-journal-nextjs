@@ -1,8 +1,8 @@
-import { Icons } from '@/components/Icons';
 import { Button } from '@/components/ui/button';
 import { constants } from '@/lib/config';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import GoogleSigninButton from '../components/GoogleSigninButton';
 import SigninForm from './SigninForm';
 
 export default function Page() {
@@ -19,12 +19,7 @@ export default function Page() {
       </div>
       <SigninForm />
       <div className="flex flex-col gap-2 mx-auto w-80">
-        <Button asChild variant="outline">
-          <Link href="/api/auth/google">
-            <Icons.Google className="stroke-white mr-2 h-5 w-5" />
-            {t('signin-with-google')}
-          </Link>
-        </Button>
+        <GoogleSigninButton />
       </div>
       <div className="flex flex-col gap-2 mx-auto w-80">
         <Button asChild variant="link">

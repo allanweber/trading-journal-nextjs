@@ -48,17 +48,17 @@ const authMiddleware = (request: NextRequest) => {
   return intlMiddleware(request);
 };
 
-export default function middleware(req: NextRequest) {
+export default function middleware(request: NextRequest) {
   const publicPathnameRegex = RegExp(
     `^(/(${locales.join('|')}))?(${publicPages.join('|')})?/?$`,
     'i'
   );
-  const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
+  const isPublicPage = publicPathnameRegex.test(request.nextUrl.pathname);
 
   if (isPublicPage) {
-    return intlMiddleware(req);
+    return intlMiddleware(request);
   } else {
-    return (authMiddleware as any)(req);
+    return (authMiddleware as any)(request);
   }
 }
 

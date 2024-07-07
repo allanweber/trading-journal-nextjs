@@ -10,3 +10,9 @@ export interface GoogleUser {
   email_verified: boolean;
   locale: string;
 }
+
+export interface UserDisplay {
+  userId: string;
+  displayName?: string;
+  pictureUrl?: string | undefined;
+}
