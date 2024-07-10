@@ -1,7 +1,7 @@
 'use server';
 
 import { unauthenticatedAction } from '@/lib/safe-action';
-import { unsubscribe } from '@/services/newsletter-service';
+import { unsubscribe } from '@/services/newsletter.service';
 import { z } from 'zod';
 
 export const unsubscribeNewsletter = unauthenticatedAction
