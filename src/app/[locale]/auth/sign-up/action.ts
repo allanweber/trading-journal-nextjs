@@ -1,6 +1,6 @@
 'use server';
 
-import { ActionError, unauthenticatedAction } from '@/lib/safe-action';
+import { unauthenticatedAction } from '@/lib/safe-action';
 import { setSession } from '@/lib/session';
 import { createPasswordUser } from '@/services/user.service';
 import { z } from 'zod';
@@ -22,17 +22,7 @@ export const signup = unauthenticatedAction
     }
   )
   .handler(async ({ input }) => {
-    try {
-      const userId = await createPasswordUser(input.email, input.password);
-
-      await setSession(userId);
-
-      return { success: true };
-    } catch (error) {
-      if (error instanceof ActionError) {
-        throw error;
-      }
-      console.error(error);
-      throw new ActionError('SOMETHING-WRONG', 'Something went wrong');
-    }
+    const userId = await createPasswordUser(input.email, input.password);
+    await setSession(userId);
+    return { success: true };
   });

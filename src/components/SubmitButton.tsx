@@ -7,14 +7,17 @@ import { Button } from './ui/button';
 export default function SubmitButton({
   children,
   waiting,
+  isPending = false,
   disabled = false,
 }: {
   children: React.ReactNode;
   waiting?: React.ReactNode;
+  isPending?: boolean;
   disabled?: boolean;
 }) {
   const t = useTranslations();
-  const { pending } = useFormStatus();
+  let { pending } = useFormStatus();
+  pending = pending || isPending;
 
   const wait = waiting ?? t('please-wait');
 

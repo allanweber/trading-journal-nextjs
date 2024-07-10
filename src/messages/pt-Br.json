@@ -141,6 +141,16 @@
   "errors": {
     "SOMETHING-WRONG": "Algo deu errado",
     "TOO_MANY_REQUESTS": "Muitas requisições, tente novamente mais tarde",
-    "NOT_AUTHORIZED": "Email ou senha inválidos"
+    "NOT_AUTHORIZED": "Email ou senha inválidos",
+    "UNAUTHORIZED": "Acesso não autorizado",
+    "EXISTING_USER_NAME": "Email já existe",
+    "EMAIL_NOT_VERIFIED": "Email não verificado",
+    "USER_NOT_FOUND": "Usuário não encontrado",
+    "INVALID-TOKEN": "O token fornecido é inválido ou expirou.",
+    "INVALID_CODE": "Código inválido"
+  },
+  "account": {
+    "title": "Conta",
+    "subtitle": "Gerencie sua conta e configurações de perfil"
   }
 }

@@ -17,9 +17,7 @@ export default async function Page({
   if (!searchParams.token || data?.success === false || err) {
     return (
       <div className="flex flex-col justify-center items-center gap-6">
-        <h1 className="text-sm text-destructive">
-          {err?.name ? t(err.name) : t('invalid-token')}
-        </h1>
+        <h1 className="text-sm text-destructive">{err?.message}</h1>
         <Button asChild variant="link">
           <Link href="forgot-password">{t('forgot-password')}</Link>
         </Button>

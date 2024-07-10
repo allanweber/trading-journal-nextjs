@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "f5caf7e1-e9c0-449a-8c11-96a5fdfbd554",
+  "id": "cb2e4702-0961-459e-b25d-364ee33d2806",
   "prevId": "343975f5-0ccd-412c-a4b1-94809491f375",
   "tables": {
     "email_verification": {
@@ -485,13 +485,6 @@
           "notNull": false,
           "autoincrement": false
         },
-        "image_id": {
-          "name": "image_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
         "image": {
           "name": "image",
           "type": "text",
@@ -503,7 +496,7 @@
           "name": "bio",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false,
           "default": "''"
         },

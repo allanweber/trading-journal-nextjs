@@ -61,9 +61,8 @@ CREATE TABLE `user_profile` (
 	`first_name` text,
 	`last_name` text,
 	`date_of_birth` integer,
-	`image_id` text,
 	`image` text,
-	`bio` text DEFAULT '' NOT NULL,
+	`bio` text DEFAULT '',
 	`locale` text DEFAULT 'en' NOT NULL,
 	`theme` text DEFAULT 'system' NOT NULL,
 	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade

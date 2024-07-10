@@ -22,7 +22,7 @@ export const createStartProfile = async (
 export const createProfile = async (
   userId: string,
   displayName: string,
-  fistName?: string,
+  firstName?: string,
   lastName?: string,
   image?: string,
   locale?: string,
@@ -33,7 +33,7 @@ export const createProfile = async (
     .values({
       userId,
       displayName,
-      fistName,
+      firstName,
       lastName,
       image,
       locale,
@@ -66,13 +66,32 @@ export const updateWithGoogle = async (
       .update(userProfile)
       .set({
         displayName: profile.displayName || googleUser.name,
-        fistName: profile.fistName || googleUser.given_name,
+        firstName: profile.firstName || googleUser.given_name,
         lastName: profile.lastName || googleUser.family_name,
         image: profile.image || googleUser.picture,
         locale: profile.locale || googleUser.locale,
       })
       .where(eq(userProfile.userId, userId));
   }
+};
+
+export const updateProfile = async (
+  userId: string,
+  displayName: string,
+  firstName?: string,
+  lastName?: string,
+  bio?: string,
+  trans = db
+) => {
+  return await trans
+    .update(userProfile)
+    .set({
+      displayName,
+      firstName: firstName || null,
+      lastName: lastName || null,
+      bio: bio || undefined,
+    })
+    .where(eq(userProfile.userId, userId));
 };
 
 export const getByUserId = async (userId: string, trans = db) => {

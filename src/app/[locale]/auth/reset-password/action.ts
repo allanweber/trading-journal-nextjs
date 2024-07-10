@@ -1,6 +1,6 @@
 'use server';
 
-import { ActionError, unauthenticatedAction } from '@/lib/safe-action';
+import { unauthenticatedAction } from '@/lib/safe-action';
 import {
   changePassword,
   validateChangePasswordToken,
@@ -15,16 +15,8 @@ export const validateToken = unauthenticatedAction
     })
   )
   .handler(async ({ input }) => {
-    try {
-      await validateChangePasswordToken(input.token);
-      return { success: true };
-    } catch (error) {
-      if (error instanceof ActionError) {
-        throw error;
-      }
-      console.error(error);
-      throw new ActionError('SOMETHING-WRONG', 'Something went wrong');
-    }
+    await validateChangePasswordToken(input.token);
+    return { success: true };
   });
 
 export const resetPassword = unauthenticatedAction
@@ -54,14 +46,6 @@ export const resetPassword = unauthenticatedAction
     }
   )
   .handler(async ({ input }) => {
-    try {
-      await changePassword(input.token, input.email, input.password);
-      return { success: true };
-    } catch (error) {
-      if (error instanceof ActionError) {
-        throw error;
-      }
-      console.error(error);
-      throw new ActionError('SOMETHING-WRONG', 'Something went wrong');
-    }
+    await changePassword(input.token, input.email, input.password);
+    return { success: true };
   });

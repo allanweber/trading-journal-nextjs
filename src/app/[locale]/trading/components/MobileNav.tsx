@@ -4,12 +4,14 @@ import { useCurrentPath } from '@/hooks/useCurrentPath';
 import { constants } from '@/lib/config';
 import { cn } from '@/lib/utils';
 import { Package2Icon, SettingsIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React from 'react';
 import { navItems } from './SideNav';
 
 export default function MobileNav() {
   const { currentPath } = useCurrentPath();
+  const t = useTranslations('nav');
 
   return (
     <nav className="fixed inset-y-8 grid gap-6 text-lg font-medium">
@@ -38,7 +40,7 @@ export default function MobileNav() {
             {React.cloneElement(item.icon, {
               className: 'h-5 w-5 transition-all group-hover:scale-110',
             })}
-            {item.label}
+            {t(item.label)}
           </Link>
         ))}
       </nav>
@@ -54,7 +56,7 @@ export default function MobileNav() {
           prefetch={false}
         >
           <SettingsIcon className="h-5 w-5 transition-all group-hover:scale-110" />
-          Settings
+          {t('settings')}
         </Link>
       </nav>
     </nav>

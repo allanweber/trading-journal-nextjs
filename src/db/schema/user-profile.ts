@@ -9,12 +9,11 @@ const userProfile = sqliteTable('user_profile', {
     .unique()
     .references(() => user.id, { onDelete: 'cascade' }),
   displayName: text('display_name'),
-  fistName: text('first_name'),
+  firstName: text('first_name'),
   lastName: text('last_name'),
   dateOfBirth: integer('date_of_birth', { mode: 'timestamp' }),
-  imageId: text('image_id'),
   image: text('image'),
-  bio: text('bio').notNull().default(''),
+  bio: text('bio').default(''),
   locale: text('locale').notNull().default('en'),
   theme: text('theme').notNull().default('system'),
 });

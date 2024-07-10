@@ -1,3 +1,4 @@
+import { getTranslations } from 'next-intl/server';
 import { ActionError } from './safe-action';
 
 const trackers: Record<
@@ -28,6 +29,7 @@ export async function rateLimitByKey(
   tracker.count++;
 
   if (tracker.count > limit) {
-    throw new ActionError('TOO_MANY_REQUESTS', 'Rate limit exceeded');
+    const t = await getTranslations('errors');
+    throw new ActionError('TOO_MANY_REQUESTS', t('TOO_MANY_REQUESTS'));
   }
 }

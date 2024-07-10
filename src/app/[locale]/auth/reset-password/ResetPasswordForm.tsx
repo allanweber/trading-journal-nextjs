@@ -71,7 +71,7 @@ export default function ResetPasswordForm({ token }: { token: string }) {
       </div>
 
       <div className="flex flex-col gap-2 mx-auto w-80 text-sm text-destructive">
-        {error && 'ERROR' === error.code && <div>{errorT(error.name)}</div>}
+        {error && 'ERROR' === error.code && <div>{error.message}</div>}
       </div>
 
       <div className="flex flex-col gap-2 mx-auto w-80">

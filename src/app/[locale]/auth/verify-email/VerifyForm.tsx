@@ -60,7 +60,7 @@ export default function VerifyForm() {
                   <div key={err}>{errorT(err)}</div>
                 ))}
               {verifyError && 'ERROR' === verifyError.code && (
-                <div>{errorT(verifyError.name)}</div>
+                <div>{verifyError.message}</div>
               )}
             </div>
           </div>
@@ -100,7 +100,7 @@ export default function VerifyForm() {
                       <div key={err}>{errorT(err)}</div>
                     ))}
                   {sendAgainError && 'ERROR' === sendAgainError.code && (
-                    <div>{errorT(sendAgainError.name)}</div>
+                    <div>{sendAgainError.message}</div>
                   )}
                 </>
               </div>

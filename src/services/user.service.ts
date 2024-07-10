@@ -18,6 +18,7 @@ import { addFreePlan } from '@/db/repositories/userPlans.repository';
 import {
   createProfile,
   createStartProfile,
+  getByUserId,
   updateWithGoogle,
 } from '@/db/repositories/userProfile.repository';
 import { addUserRole } from '@/db/repositories/userRoles.repository';
@@ -30,6 +31,7 @@ import {
 import { ActionError } from '@/lib/safe-action';
 import { GoogleUser } from '@/types';
 import { generateIdFromEntropySize } from 'lucia';
+import { getTranslations } from 'next-intl/server';
 import { TimeSpan, createDate, isWithinExpirationDate } from 'oslo';
 import { sendVerificationEmail } from './email-verification.service';
 import { sendResetPasswordEmail } from './emails.service';
@@ -38,7 +40,8 @@ export async function createPasswordUser(email: string, password: string) {
   const registeredUser = await getUserByEmail(email);
 
   if (registeredUser) {
-    throw new ActionError('EXISTING_USER_NAME', 'User already exists');
+    const t = await getTranslations('errors');
+    throw new ActionError('EXISTING_USER_NAME', t('EXISTING_USER_NAME'));
   }
 
   const salt = generateIdFromEntropySize(16);
@@ -99,20 +102,21 @@ export async function createGoogleUser(googleUser: GoogleUser) {
 }
 
 export async function verifyCredentials(email: string, password: string) {
+  const t = await getTranslations('errors');
   const registeredUser = await getUserByEmail(email);
 
   if (!registeredUser) {
-    throw new ActionError('NOT_AUTHORIZED', 'Invalid user or password');
+    throw new ActionError('NOT_AUTHORIZED', t('NOT_AUTHORIZED'));
   }
 
   if (!registeredUser.email_verified) {
-    throw new ActionError('EMAIL_NOT_VERIFIED', 'Email not verified');
+    throw new ActionError('EMAIL_NOT_VERIFIED', t('EMAIL_NOT_VERIFIED'));
   }
 
   const userAccount = await getAccountByUserId(registeredUser.id);
 
   if (!userAccount) {
-    throw new ActionError('NOT_AUTHORIZED', 'Invalid user or password');
+    throw new ActionError('NOT_AUTHORIZED', t('NOT_AUTHORIZED'));
   }
 
   if (userAccount.accountType === 'email') {
@@ -122,10 +126,10 @@ export async function verifyCredentials(email: string, password: string) {
       userAccount.salt!
     );
     if (!validPassword) {
-      throw new ActionError('NOT_AUTHORIZED', 'Invalid user or password');
+      throw new ActionError('NOT_AUTHORIZED', t('NOT_AUTHORIZED'));
     }
   } else {
-    throw new ActionError('NOT_AUTHORIZED', 'Invalid user or password');
+    throw new ActionError('NOT_AUTHORIZED', t('NOT_AUTHORIZED'));
   }
 
   return registeredUser.id;
@@ -135,7 +139,8 @@ export async function changePasswordRequest(email: string) {
   const registeredUser = await getUserByEmail(email);
 
   if (!registeredUser) {
-    throw new ActionError('USER_NOT_FOUND', 'User not found');
+    const t = await getTranslations('errors');
+    throw new ActionError('USER_NOT_FOUND', t('USER_NOT_FOUND'));
   }
 
   const token = await generateToken();
@@ -160,11 +165,11 @@ export async function changePassword(
   password: string
 ) {
   const userId = await validateChangePasswordToken(token);
-
   const passwordChangeRequest = await getPasswordResetByUserId(userId);
 
   if (!passwordChangeRequest || passwordChangeRequest.email !== email) {
-    throw new ActionError('invalid-token', 'Invalid token');
+    const t = await getTranslations('errors');
+    throw new ActionError('INVALID-TOKEN', t('INVALID-TOKEN'));
   }
 
   const salt = generateIdFromEntropySize(16);
@@ -176,17 +181,31 @@ export async function changePassword(
 }
 
 export async function validateChangePasswordToken(token: string) {
+  const t = await getTranslations('errors');
   const compareToken = await hashToken(token);
-
   const passwordResetRecord = await getPasswordResetByTokenHash(compareToken);
 
   if (!passwordResetRecord) {
-    throw new ActionError('invalid-token', 'Invalid token');
+    throw new ActionError('INVALID-TOKEN', t('INVALID-TOKEN'));
   }
 
   if (!isWithinExpirationDate(passwordResetRecord.expires_at)) {
-    throw new ActionError('invalid-token', 'Token expired');
+    throw new ActionError('INVALID-TOKEN', t('INVALID-TOKEN'));
   }
 
   return passwordResetRecord.userId;
+}
+
+export async function getProfile(userId: string) {
+  const profile = await getByUserId(userId);
+  if (!profile) {
+    const t = await getTranslations('errors');
+    throw new ActionError('UNAUTHORIZED', t('UNAUTHORIZED'));
+  }
+  return {
+    displayName: profile.displayName!,
+    firstName: profile.firstName || undefined,
+    lastName: profile.lastName || undefined,
+    bio: profile.bio || undefined,
+  };
 }

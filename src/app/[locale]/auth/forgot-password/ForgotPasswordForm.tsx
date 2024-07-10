@@ -40,9 +40,7 @@ export default function ForgotPasswordForm() {
                 error?.fieldErrors?.email.map((err) => (
                   <div key={err}>{errorT(err)}</div>
                 ))}
-              {error && 'ERROR' === error.code && (
-                <div>{errorT(error.name)}</div>
-              )}
+              {error && 'ERROR' === error.code && <div>{error.message}</div>}
             </>
           </div>
         </div>

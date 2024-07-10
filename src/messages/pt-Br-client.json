@@ -15,28 +15,41 @@
   },
   "errors": {
     "error": "Algo deu errado",
-    "TOO_MANY_REQUESTS": "Muitas requisições, tente novamente mais tarde",
-    "NOT_AUTHORIZED": "Email ou senha inválidos",
-    "EXISTING_USER_NAME": "Email já existe",
-    "EMAIL_NOT_VERIFIED": "Email não verificado",
-    "USER_NOT_FOUND": "Usuário não encontrado",
-    "INVALID_CODE": "Código inválido",
     "email-required": "Email é obrigatório",
     "email-invalid": "Email inválido",
     "password-required": "Senha é obrigatória",
     "password-invalid-size": "A senha deve ter entre 6 e 255 caracteres",
     "password-mismatch": "Senhas não conferem",
-    "invalid-token": "O token fornecido é inválido ou expirou.",
-    "SOMETHING-WRONG": "Algo deu errado"
+    "code-invalid-size": "Código deve ter 6 caracteres",
+    "display-name-required": "Nome de exibição é obrigatório",
+    "max-100": "Deve ter menos de 100 caracteres",
+    "max-256": "Deve ter menos de 256 caracteres"
   },
   "search": {
     "search": "Buscar",
     "not-found": "Nenhum resultado encontrado"
+  },
+  "nav": {
+    "home": "Início",
+    "dashboard": "Dashboard",
+    "settings": "Configurações",
+    "general": "Geral",
+    "account": "Conta"
   },
   "email": "Email",
   "password": "Senha",
   "confirm-password": "Confirmar Senha",
   "continue": "Continuar",
   "please-wait": "Por favor, aguarde...",
-  "forgot-password-email-sent": "Um email foi enviado para redefinir sua senha"
+  "forgot-password-email-sent": "Um email foi enviado para redefinir sua senha",
+  "account": {
+    "success": "Perfil atualizado com sucesso",
+    "display-name": "Nome de exibição",
+    "display-description": "Este é o seu nome de exibição público. Pode ser seu nome verdadeiro ou um pseudônimo.",
+    "first-name": "Primeiro Nome",
+    "last-name": "Sobrenome",
+    "bio": "Biografia",
+    "bio-description": "Conte-nos um pouco sobre você",
+    "save": "Atualizar Perfil"
+  }
 }
