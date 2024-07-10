@@ -18,6 +18,7 @@ import { Icons } from '@/components/Icons';
 import LocaleSelect from '@/components/LocaleSelect';
 import ModeToggle from '@/components/ModeToggle';
 import { buttonVariants } from '@/components/ui/button';
+import { constants } from '@/lib/config';
 import { Menu } from 'lucide-react';
 import Link from 'next/link';
 
@@ -49,7 +50,7 @@ export default function Navbar({
               href="/"
               className="ml-2 font-bold text-xl flex"
             >
-              <Icons.Logo />
+              <Icons.Logo width={25} height={25} />
               Trading Journal
             </Link>
           </NavigationMenuItem>
@@ -86,7 +87,7 @@ export default function Navbar({
                   ))}
                   <Link
                     rel="noreferrer noopener"
-                    href="/"
+                    href={constants.APP_SIGNIN_PAGE}
                     className={`w-[130px] ${buttonVariants({
                       variant: 'default',
                     })}`}
@@ -95,7 +96,7 @@ export default function Navbar({
                   </Link>
                   <Link
                     rel="noreferrer noopener"
-                    href="/"
+                    href={constants.APP_SIGNUP_PAGE}
                     className={`w-[130px] ${buttonVariants({
                       variant: 'default',
                     })}`}
@@ -127,7 +128,7 @@ export default function Navbar({
           <div className="hidden md:flex gap-2">
             <Link
               rel="noreferrer noopener"
-              href="/"
+              href={constants.APP_SIGNIN_PAGE}
               className={`w-[130px] ${buttonVariants({
                 variant: 'default',
               })}`}
@@ -136,7 +137,7 @@ export default function Navbar({
             </Link>
             <Link
               rel="noreferrer noopener"
-              href="/"
+              href={constants.APP_SIGNUP_PAGE}
               className={`w-[130px] ${buttonVariants({
                 variant: 'default',
               })}`}

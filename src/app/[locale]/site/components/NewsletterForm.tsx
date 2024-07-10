@@ -1,10 +1,9 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import SubmitButton from '@/components/SubmitButton';
 import { Input } from '@/components/ui/input';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import { useFormStatus } from 'react-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useServerAction } from 'zsa-react';
 import { recaptchaValidation, subscribeNewsletter } from '../actions';
@@ -15,23 +14,6 @@ type Props = {
   waitingMessage: string;
   successMessage: string;
 };
-
-function SubmitButton({
-  label,
-  waiting,
-  disabled,
-}: {
-  label: string;
-  waiting: string;
-  disabled: boolean;
-}) {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" disabled={pending || disabled}>
-      {pending ? waiting : label}
-    </Button>
-  );
-}
 
 export default function NewsletterForm({
   inputLabel,
@@ -80,16 +62,14 @@ export default function NewsletterForm({
             name="email"
             aria-invalid={error?.fieldErrors?.email !== undefined}
           />
-          <div className="text-sm text-red-500">
+          <div className="text-sm text-destructive">
             {error?.fieldErrors?.email &&
               error?.fieldErrors?.email.map((err) => t(err))}
           </div>
         </div>
-        <SubmitButton
-          label={buttonLabel}
-          waiting={waitingMessage}
-          disabled={!captcha}
-        />
+        <SubmitButton waiting={waitingMessage} disabled={!captcha}>
+          {buttonLabel}
+        </SubmitButton>
       </form>
       <ReCAPTCHA
         sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}

@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/providers/theme';
 import type { Metadata } from 'next';
@@ -40,8 +41,9 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <NextIntlClientProvider messages={messages}>
-            {children}
+            <main>{children}</main>
           </NextIntlClientProvider>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

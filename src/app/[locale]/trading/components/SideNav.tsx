@@ -10,19 +10,21 @@ import { useCurrentPath } from '@/hooks/useCurrentPath';
 import { constants } from '@/lib/config';
 import { cn } from '@/lib/utils';
 import { HomeIcon, Package, SettingsIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React from 'react';
 
 export const navItems = [
   {
     icon: <HomeIcon />,
-    label: 'Dashboard',
+    label: 'dashboard',
     href: `${constants.APP_ROOT_PAGE}/dashboard`,
   },
 ];
 
 export default function SideNav() {
   const { currentPath } = useCurrentPath();
+  const t = useTranslations('nav');
 
   return (
     <aside className="fixed inset-y-0 left-0 z-10 hidden w-50 flex-col border-r bg-background sm:flex">
@@ -50,10 +52,10 @@ export default function SideNav() {
                   {React.cloneElement(item.icon, {
                     className: 'h-5 w-5 transition-all group-hover:scale-110',
                   })}
-                  <span className="sr-only">{item.label}</span>
+                  <span className="sr-only">{t(item.label)}</span>
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="right">{item.label}</TooltipContent>
+              <TooltipContent side="right">{t(item.label)}</TooltipContent>
             </Tooltip>
           ))}
         </TooltipProvider>
@@ -73,10 +75,10 @@ export default function SideNav() {
                 prefetch={false}
               >
                 <SettingsIcon className="h-5 w-5 transition-all group-hover:scale-110" />
-                <span className="sr-only">Settings</span>
+                <span className="sr-only">{t('settings')}</span>
               </Link>
             </TooltipTrigger>
-            <TooltipContent side="right">Settings</TooltipContent>
+            <TooltipContent side="right">{t('settings')}</TooltipContent>
           </Tooltip>
         </TooltipProvider>
       </nav>

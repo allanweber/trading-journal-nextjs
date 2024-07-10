@@ -8,9 +8,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { getAuthenticatedUser } from '@/lib/auth';
 import { constants } from '@/lib/config';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
+import { signOut } from './action';
 
 const navItems = [
   {
@@ -23,8 +25,9 @@ const navItems = [
   },
 ];
 
-export default function Account() {
-  const t = useTranslations();
+export default async function Account() {
+  const t = await getTranslations();
+  const user = await getAuthenticatedUser();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -34,13 +37,15 @@ export default function Account() {
           className="overflow-hidden rounded-full"
         >
           <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+            <AvatarImage src={user.pictureUrl} alt={user.displayName} />
             <AvatarFallback>UR</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuLabel>{t('my-account')}</DropdownMenuLabel>
+        <DropdownMenuLabel>
+          {user.displayName || t('my-account')}
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
         {navItems.map((item) => (
           <DropdownMenuItem key={item.href}>
@@ -48,7 +53,18 @@ export default function Account() {
           </DropdownMenuItem>
         ))}
         <DropdownMenuSeparator />
-        <DropdownMenuItem>{t('logout')}</DropdownMenuItem>
+        <DropdownMenuItem>
+          <form action={signOut}>
+            <Button
+              variant="ghost"
+              type="submit"
+              size="sm"
+              className="justify-start m-0 p-0 font-normal h-5 w-24"
+            >
+              {t('logout')}
+            </Button>
+          </form>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

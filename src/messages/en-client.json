@@ -15,10 +15,41 @@
   },
   "errors": {
     "error": "Something went wrong",
-    "TOO_MANY_REQUESTS": "Too many requests, please try again later"
+    "email-required": "Email is required",
+    "email-invalid": "Email is invalid",
+    "password-required": "Password is required",
+    "password-invalid-size": "Password must be between 6 and 255 characters",
+    "password-mismatch": "Passwords do not match",
+    "code-invalid-size": "Code must be 6 characters",
+    "display-name-required": "Display Name is required",
+    "max-100": "Must be less than 100 characters",
+    "max-256": "Must be less than 256 characters"
   },
   "search": {
     "search": "Search",
     "not-found": "No results found"
+  },
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "general": "General",
+    "account": "Account"
+  },
+  "email": "Email",
+  "password": "Password",
+  "confirm-password": "Confirm Password",
+  "continue": "Continue",
+  "please-wait": "Please wait...",
+  "forgot-password-email-sent": "An email has been sent to reset your password",
+  "account": {
+    "success": "Profile updated successfully",
+    "display-name": "Display Name",
+    "display-description": "This is your public display name. It can be your real name or a pseudonym.",
+    "first-name": "First Name",
+    "last-name": "Last Name",
+    "bio": "Bio",
+    "bio-description": "Tell us a little about yourself",
+    "save": "Update Profile"
   }
 }

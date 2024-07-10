@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { constants } from '@/lib/config';
 import {
   BadgeCent,
   Check,
@@ -16,6 +17,7 @@ import {
   Smartphone,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 const essentialsKey = [
   'portfolios',
@@ -76,7 +78,11 @@ export default function HeroCards() {
         </CardHeader>
 
         <CardContent>
-          <Button className="w-full">{t('start-free-trial')}</Button>
+          <Button asChild className="w-full">
+            <Link href={constants.APP_SIGNUP_PAGE}>
+              {t('start-free-trial')}
+            </Link>
+          </Button>
         </CardContent>
 
         <hr className="w-4/5 m-auto mb-4" />

@@ -1,11 +1,19 @@
+import { validateRequest } from '@/lib/auth';
+import { constants } from '@/lib/config';
+import { redirect } from 'next/navigation';
 import Header from './components/Header';
 import SideNav from './components/SideNav';
 
-export default function TradingLayout({
+export default async function TradingLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await validateRequest();
+  if (!session.user) {
+    return redirect(constants.APP_SIGNIN_PAGE);
+  }
+
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <SideNav />
