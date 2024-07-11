@@ -1,4 +1,3 @@
-import { verifyRequestOrigin } from 'lucia';
 import createMiddleware from 'next-intl/middleware';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
@@ -31,21 +30,6 @@ const authMiddleware = (request: NextRequest) => {
     );
   }
 
-  if (request.method === 'GET') {
-    return intlMiddleware(request);
-  }
-
-  const originHeader = request.headers.get('Origin');
-  const hostHeader = request.headers.get('Host');
-  if (
-    !originHeader ||
-    !hostHeader ||
-    !verifyRequestOrigin(originHeader, [hostHeader])
-  ) {
-    return new NextResponse(null, {
-      status: 403,
-    });
-  }
   return intlMiddleware(request);
 };
 
