@@ -7,12 +7,12 @@ import Link from 'next/link';
 
 const navItems = [
   {
-    label: 'general',
+    label: 'appearance',
     href: `${constants.APP_ROOT_PAGE}/settings`,
   },
   {
     label: 'account',
-    href: `${constants.APP_ROOT_PAGE}/settings/user`,
+    href: `${constants.APP_ROOT_PAGE}/settings/account`,
   },
 ];
 

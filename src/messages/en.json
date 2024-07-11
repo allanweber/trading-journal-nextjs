@@ -152,5 +152,9 @@
   "account": {
     "title": "Account",
     "subtitle": "Manage your account and profile settings"
+  },
+  "appearance": {
+    "title": "Appearance",
+    "subtitle": "Customize the appearance of the app"
   }
 }

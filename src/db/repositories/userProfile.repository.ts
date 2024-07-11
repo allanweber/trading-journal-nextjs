@@ -94,6 +94,18 @@ export const updateProfile = async (
     .where(eq(userProfile.userId, userId));
 };
 
+export const updateProfileAppearance = async (
+  userId: string,
+  theme: string,
+  locale: string,
+  trans = db
+) => {
+  return await trans
+    .update(userProfile)
+    .set({ theme, locale })
+    .where(eq(userProfile.userId, userId));
+};
+
 export const getByUserId = async (userId: string, trans = db) => {
   return await trans.query.userProfile.findFirst({
     where: eq(userProfile.userId, userId),

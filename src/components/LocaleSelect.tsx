@@ -1,7 +1,7 @@
 'use client';
 
+import { useSetLocale } from '@/hooks/useSetLocale';
 import { useTranslations } from 'next-intl';
-import { usePathname, useRouter } from 'next/navigation';
 import { Icons } from './Icons';
 import { ToggleGroup, ToggleGroupItem } from './ui/toggle-group';
 
@@ -20,18 +20,10 @@ const locales = [
 
 export default function LocaleSelect() {
   const t = useTranslations('locale');
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const currentLocale = locales.find(
-    (locale) => locale.locale === pathname.split('/')[1]
-  );
+  const { locale, setLocale } = useSetLocale();
 
   const handleChange = (nextLocale: string) => {
-    if (!pathname) router.push('/');
-    const segments = pathname.split('/');
-    segments[1] = nextLocale;
-    router.push(segments.join('/'));
+    setLocale(nextLocale);
   };
 
   return (
@@ -39,7 +31,7 @@ export default function LocaleSelect() {
       type="single"
       size="sm"
       onValueChange={handleChange}
-      value={currentLocale?.locale}
+      value={locale}
     >
       {locales.map((locale) => (
         <ToggleGroupItem
