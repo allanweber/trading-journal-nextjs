@@ -209,3 +209,15 @@ export async function getProfile(userId: string) {
     bio: profile.bio || undefined,
   };
 }
+
+export async function getAppearanceSettings(userId: string) {
+  const profile = await getByUserId(userId);
+  if (!profile) {
+    const t = await getTranslations('errors');
+    throw new ActionError('UNAUTHORIZED', t('UNAUTHORIZED'));
+  }
+  return {
+    theme: profile.theme,
+    language: profile.locale,
+  };
+}

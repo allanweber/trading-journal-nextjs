@@ -17,7 +17,7 @@ import { signOut } from './action';
 const navItems = [
   {
     label: 'settings',
-    href: `${constants.APP_ROOT_PAGE}/settings/user`,
+    href: `${constants.APP_ROOT_PAGE}/settings/account`,
   },
   {
     label: 'support',

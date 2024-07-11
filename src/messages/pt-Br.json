@@ -146,11 +146,14 @@
     "EXISTING_USER_NAME": "Email já existe",
     "EMAIL_NOT_VERIFIED": "Email não verificado",
     "USER_NOT_FOUND": "Usuário não encontrado",
-    "INVALID-TOKEN": "O token fornecido é inválido ou expirou.",
-    "INVALID_CODE": "Código inválido"
+    "INVALID-TOKEN": "O token fornecido é inválido ou expirou."
   },
   "account": {
     "title": "Conta",
     "subtitle": "Gerencie sua conta e configurações de perfil"
+  },
+  "appearance": {
+    "title": "Aparência",
+    "subtitle": "Personalize a aparência da aplicação"
   }
 }

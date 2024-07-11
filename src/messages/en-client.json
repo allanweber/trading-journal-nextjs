@@ -31,9 +31,10 @@
   },
   "nav": {
     "home": "Home",
+    "trading": "Dashboard",
     "dashboard": "Dashboard",
     "settings": "Settings",
-    "general": "General",
+    "appearance": "Appearance",
     "account": "Account"
   },
   "email": "Email",
@@ -51,5 +52,17 @@
     "bio": "Bio",
     "bio-description": "Tell us a little about yourself",
     "save": "Update Profile"
+  },
+  "appearance": {
+    "language": "Language",
+    "language-description": "Select your preferred language",
+    "english": "English",
+    "portuguese": "Portuguese",
+    "theme": "Theme",
+    "theme-description": "Select your preferred theme",
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System",
+    "save": "Update Preferences"
   }
 }

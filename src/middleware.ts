@@ -7,6 +7,7 @@ import { constants } from './lib/config';
 const locales = ['en', 'pt-Br'];
 const publicPages = [
   '/site',
+  '/site/unsubscribe',
   '/auth/sign-in',
   '/auth/sign-up',
   '/auth/forgot-password',
