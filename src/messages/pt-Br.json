@@ -14,6 +14,7 @@
     "features": "Funcionalidades",
     "advanced-features": "Funcionalidades Avançadas",
     "pricing": "Preços",
+    "contact-nav": "Contato",
     "FAQ": "FAQ",
     "sign-in": "Entrar",
     "sign-up": "Cadastrar",
@@ -101,6 +102,10 @@
     "unsubscribe": {
       "title": "Sentimos muito em ver você partir",
       "button": "Clique aqui para cancelar a inscrição"
+    },
+    "contact": {
+      "title": "Entre em Contato",
+      "subtitle": "Tem alguma dúvida ou precisa de ajuda? Preencha o formulário abaixo e retornaremos o mais breve possível."
     }
   },
   "my-account": "Minha Conta",
@@ -136,7 +141,12 @@
     "activate-account": "Ative sua conta",
     "reset-password-subject": "Mude sua senha",
     "reset-password": "Redefinir sua senha",
-    "reset-password-description": "Clique no botão abaixo para redefinir sua senha ou copie e cole o link no seu navegador. Se você não solicitou uma redefinição de senha, ignore este e-mail ou entre em contato com o suporte."
+    "reset-password-description": "Clique no botão abaixo para redefinir sua senha ou copie e cole o link no seu navegador. Se você não solicitou uma redefinição de senha, ignore este e-mail ou entre em contato com o suporte.",
+    "contact-subject": "Confirmação de recebimento de mensagem",
+    "contact-preview": "Recebemos sua mensagem",
+    "contact-tile": "Obrigado por entrar em contato {name}",
+    "contact-description": "Recebemos sua mensagem e retornaremos o mais breve possível no email {email}.",
+    "contact-message": "Sua mensagem: {message}"
   },
   "errors": {
     "SOMETHING-WRONG": "Algo deu errado",

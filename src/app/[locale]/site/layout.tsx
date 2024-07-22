@@ -16,6 +16,10 @@ const routeList: RouteProps[] = [
     href: '#pricing',
     label: 'pricing',
   },
+  {
+    href: '/site/contact',
+    label: 'contact-nav',
+  },
 ];
 
 export default function SiteLayout({

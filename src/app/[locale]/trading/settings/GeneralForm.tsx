@@ -50,14 +50,13 @@ export function GeneralForm({
     const [data, err] = await execute(values);
     if (err) {
       return toast({
-        title: 'Error',
         description: err.message,
         variant: 'destructive',
       });
     }
     if (data && data.success) {
       toast({
-        description: 'Preferences updated successfully.',
+        description: t('success'),
       });
     }
   }

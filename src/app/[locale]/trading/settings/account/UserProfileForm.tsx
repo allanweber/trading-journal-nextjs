@@ -42,7 +42,6 @@ export default function UserProfileForm({
     const [data, err] = await execute(values);
     if (err) {
       return toast({
-        title: 'Error',
         description: err.message,
         variant: 'destructive',
       });

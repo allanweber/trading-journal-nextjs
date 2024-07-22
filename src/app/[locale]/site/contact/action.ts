@@ -2,23 +2,16 @@
 
 import { validateToken } from '@/lib/recaptcha';
 import { unauthenticatedAction } from '@/lib/safe-action';
-import { subscribe } from '@/services/newsletter.service';
+import { sendContactEmail } from '@/services/emails.service';
 import { z } from 'zod';
+import { contactFormSchema } from './schema';
 
-export const subscribeNewsletter = unauthenticatedAction
+export const sendMessage = unauthenticatedAction
   .createServerAction()
-  .input(
-    z.object({
-      email: z
-        .string({ message: 'email-required' })
-        .email({ message: 'email-invalid' }),
-    }),
-    {
-      type: 'formData',
-    }
-  )
+  .input(contactFormSchema)
+  .output(z.object({ success: z.boolean() }))
   .handler(async ({ input }) => {
-    await subscribe(input.email);
+    await sendContactEmail(input.email, input.name, input.message);
     return { success: true };
   });
 

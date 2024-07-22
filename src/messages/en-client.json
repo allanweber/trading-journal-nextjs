@@ -23,7 +23,11 @@
     "code-invalid-size": "Code must be 6 characters",
     "display-name-required": "Display Name is required",
     "max-100": "Must be less than 100 characters",
-    "max-256": "Must be less than 256 characters"
+    "max-256": "Must be less than 256 characters",
+    "name-required": "Name is required",
+    "min-3": "Must be at least 3 characters",
+    "message-required": "Message is required",
+    "min-10": "Must be at least 10 characters"
   },
   "search": {
     "search": "Search",
@@ -63,6 +67,17 @@
     "dark": "Dark",
     "light": "Light",
     "system": "System",
-    "save": "Update Preferences"
+    "save": "Update Preferences",
+    "success": "Preferences updated successfully"
+  },
+  "contact": {
+    "success": "Message sent successfully",
+    "name": "Name",
+    "name-description": "What should we call you?",
+    "email": "Email",
+    "email-description": "Where should we reply?",
+    "message": "Message",
+    "message-description": "What would you like to tell us?",
+    "send": "Send Message"
   }
 }

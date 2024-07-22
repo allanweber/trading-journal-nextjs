@@ -7,6 +7,7 @@ const locales = ['en', 'pt-Br'];
 const publicPages = [
   '/site',
   '/site/unsubscribe',
+  '/site/contact',
   '/auth/sign-in',
   '/auth/sign-up',
   '/auth/forgot-password',
