@@ -23,7 +23,11 @@
     "code-invalid-size": "Código deve ter 6 caracteres",
     "display-name-required": "Nome de exibição é obrigatório",
     "max-100": "Deve ter menos de 100 caracteres",
-    "max-256": "Deve ter menos de 256 caracteres"
+    "max-256": "Deve ter menos de 256 caracteres",
+    "name-required": "Nome é obrigatório",
+    "min-3": "Deve ter pelo menos 3 caracteres",
+    "message-required": "Mensagem é obrigatória",
+    "min-10": "Deve ter pelo menos 10 caracteres"
   },
   "search": {
     "search": "Buscar",
@@ -63,6 +67,17 @@
     "dark": "Escuro",
     "light": "Claro",
     "system": "Sistema",
-    "save": "Atualizar Preferências"
+    "save": "Atualizar Preferências",
+    "success": "Preferências atualizadas com sucesso"
+  },
+  "contact": {
+    "success": "Mensagem enviada com sucesso",
+    "name": "Nome",
+    "name-description": "Como podemos te chamar?",
+    "email": "Email",
+    "email-description": "Para onde devemos enviar a resposta?",
+    "message": "Mensagem",
+    "message-description": "O que você gostaria de nos dizer?",
+    "send": "Enviar Mensagem"
   }
 }
