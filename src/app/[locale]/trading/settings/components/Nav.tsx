@@ -14,6 +14,10 @@ const navItems = [
     label: 'account',
     href: `${constants.APP_ROOT_PAGE}/settings/account`,
   },
+  {
+    label: 'subscription',
+    href: `${constants.APP_ROOT_PAGE}/settings/subscription`,
+  },
 ];
 
 export default function Nav() {

@@ -28,7 +28,7 @@ export default function UserProfileForm({
 }: {
   initialValues: ProfileFormValues;
 }) {
-  const t = useTranslations('account');
+  const t = useTranslations('account-form');
   const { isPending, execute, error } = useServerAction(update);
   const { toast } = useToast();
 

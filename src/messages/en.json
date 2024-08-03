@@ -59,38 +59,6 @@
       "multi-currency": "Multi Currency",
       "image-storage": "Image Storage"
     },
-    "free": {
-      "title": "Free",
-      "description": "Our free plan includes basic features and is perfect for a beginner.",
-      "price": "<price>$0</price><month>month</month>",
-      "button": "Get Started",
-      "portfolios": "1 Portfolio",
-      "storage": "500 MB Image Storage",
-      "trades": "As many Trades as you want",
-      "support": "Email Support"
-    },
-    "essential": {
-      "most-popular": "Most Popular",
-      "title": "Essential",
-      "description": "You are ready to take your trading to the next level.",
-      "price": "<price>$10</price><month>month</month>",
-      "button": "Start Free Trial",
-      "portfolios": "5 Portfolios",
-      "storage": "5 GB Image Storage",
-      "dashboards": "Custom Dashboards",
-      "trades": "As many Trades as you want",
-      "support": "Priority support"
-    },
-    "premium": {
-      "title": "Premium",
-      "description": "You are a professional trader and need the best tools to help you succeed.",
-      "price": "<price>$40</price><month>month</month>",
-      "button": "Start Free Trial",
-      "all": "All Essential Features",
-      "portfolios": "Unlimited Portfolios",
-      "storage": "10 GB Image Storage",
-      "ai": "AI Predictions"
-    },
     "newsletter": {
       "title": "Subscribe to our <newsletter>Newsletter</newsletter>",
       "description": "Receba as últimas notícias e atualizações sobre a nossa plataforma.",
@@ -166,5 +134,17 @@
   "appearance": {
     "title": "Appearance",
     "subtitle": "Customize the appearance of the app"
+  },
+  "subscription": {
+    "title": "Subscription",
+    "description": "Manage your subscription and billing information",
+    "manage": "Manage Subscription",
+    "upgrade": "Upgrade to {plan}",
+    "essentials": "Essentials",
+    "premium": "Premium",
+    "month": "per month",
+    "year": "per year",
+    "free-call": "You are using a Free Plan",
+    "free-action": "Get started with one of the paid plans to unlock more features."
   }
 }

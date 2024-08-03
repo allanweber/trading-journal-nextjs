@@ -59,38 +59,6 @@
       "multi-currency": "Multi Moeda",
       "image-storage": "Armazenamento de imagens"
     },
-    "free": {
-      "title": "Free",
-      "description": "Nosso plano gratuito inclui recursos básicos e é perfeito para iniciantes.",
-      "price": "<price>R$0</price><month>mês</month>",
-      "button": "Comece hoje mesmo",
-      "portfolios": "1 portfólio",
-      "storage": "500 MB de armazenamento",
-      "trades": "Quantos Trades você quiser",
-      "support": "Suporte por email"
-    },
-    "essential": {
-      "most-popular": "Mais Popular",
-      "title": "Essential",
-      "description": "Recursos essenciais para levar sua negociação para o próximo nível",
-      "price": "<price>$40</price><month>mês</month>",
-      "button": "Comece seu teste gratuito",
-      "portfolios": "5 portfólios",
-      "storage": "5 GB de armazenamento",
-      "dashboards": "Dashboards Personalizados",
-      "trades": "Quantos Trades você quiser",
-      "support": "Suporte prioritário"
-    },
-    "premium": {
-      "title": "Premium",
-      "description": "Você é um trader profissional e precisa das melhores ferramentas para ter sucesso.",
-      "price": "<price>$150</price><month>mês</month>",
-      "button": "Comece seu teste gratuito",
-      "all": "Todos os recursos do plano Essential",
-      "portfolios": "Portfólios ilimitados",
-      "storage": "Armazenamento ilimitado",
-      "ai": "Insights baseados em IA"
-    },
     "newsletter": {
       "title": "Inscreva-se em nossa <newsletter>Newsletter</newsletter>",
       "description": "Inscreva-se para receber atualizações sobre novos recursos e ofertas especiais.",
@@ -165,5 +133,17 @@
   "appearance": {
     "title": "Aparência",
     "subtitle": "Personalize a aparência da aplicação"
+  },
+  "subscription": {
+    "title": "Assinatura",
+    "description": "Gerencie sua assinatura e cobrança",
+    "manage": "Gerenciar Assinatura",
+    "upgrade": "Atualizar Assinatura para {plan}",
+    "essentials": "Essential",
+    "premium": "Premium",
+    "month": "por mês",
+    "year": "por ano",
+    "free-call": "Você esta usando o plano gratuito.",
+    "free-action": "Get started with one of the paid plans to unlock more features."
   }
 }
