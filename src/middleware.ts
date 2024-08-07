@@ -15,6 +15,7 @@ const publicPages = [
   '/auth/verify-email',
   '/api/auth/google',
   '/api/auth/google/callback',
+  '/api/stripe/webhook',
 ];
 
 const intlMiddleware = createMiddleware({
