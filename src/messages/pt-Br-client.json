@@ -39,7 +39,10 @@
     "dashboard": "Dashboard",
     "settings": "Configurações",
     "appearance": "Aparência",
-    "account": "Conta"
+    "account": "Conta",
+    "billing": "Cobrança",
+    "checkout": "Finalizar Compra",
+    "subscription": "Assinatura"
   },
   "email": "Email",
   "password": "Senha",
@@ -47,7 +50,7 @@
   "continue": "Continuar",
   "please-wait": "Por favor, aguarde...",
   "forgot-password-email-sent": "Um email foi enviado para redefinir sua senha",
-  "account": {
+  "account-form": {
     "success": "Perfil atualizado com sucesso",
     "display-name": "Nome de exibição",
     "display-description": "Este é o seu nome de exibição público. Pode ser seu nome verdadeiro ou um pseudônimo.",
@@ -57,7 +60,7 @@
     "bio-description": "Conte-nos um pouco sobre você",
     "save": "Atualizar Perfil"
   },
-  "appearance": {
+  "appearance-form": {
     "language": "Idioma",
     "language-description": "Selecione seu idioma preferido",
     "english": "Inglês",
@@ -79,5 +82,47 @@
     "message": "Mensagem",
     "message-description": "O que você gostaria de nos dizer?",
     "send": "Enviar Mensagem"
+  },
+  "subscription-plans": {
+    "essentials": "Essentials",
+    "premium": "Premium",
+    "subscribe-now": "Inscreva-se agora",
+    "manage": "Gerencie sua Assinatura",
+    "upgrade": "Atualizar para {plan}",
+    "month": "por mês",
+    "year": "por ano",
+    "free-title": "Grátis",
+    "free-description": "Nosso plano gratuito inclui recursos básicos e é perfeito para iniciantes.",
+    "essential-title": "Essential",
+    "essential-description": "Recursos essenciais para levar sua negociação para o próximo nível",
+    "premium-title": "Premium",
+    "premium-description": "Você é um trader profissional e precisa das melhores ferramentas para ter sucesso.",
+    "free-portfolio": "1 Portfólio",
+    "free-portfolio-description": "Gerencie suas negociações em um só lugar",
+    "free-storage": "500 MB de Armazenamento de Imagens",
+    "free-storage-description": "Faça upload de imagens para suas negociações",
+    "many-trades": "Negociações Ilimitadas",
+    "many-trades-description": "Negociações ilimitadas para qualquer mercado ou moeda",
+    "email-support": "Suporte por Email",
+    "email-support-description": "Suporte por email para ajudar com qualquer dúvida que você possa ter",
+    "essentials-portfolio": "5 Portfólios",
+    "essentials-portfolio-description": "Crie vários portfólios e gerencie suas negociações em um só lugar",
+    "essentials-storage": "5 GB de Armazenamento de Imagens",
+    "essentials-storage-description": "Faça upload de imagens para suas negociações",
+    "custom-dashboards": "Dashboards Personalizados",
+    "custom-dashboards-description": "Crie dashboards personalizados para analisar seu desempenho",
+    "priority-support": "Suporte Prioritário",
+    "priority-support-description": "Suporte prioritário para ajudar com qualquer dúvida que você possa ter",
+    "all-essentials-features": "Todos os Recursos do Plano Essential",
+    "all-essentials-features-description": "Acesse todos os recursos do plano Essential por uma pequena taxa mensal",
+    "unlimited-portfolios": "Portfólios Ilimitados",
+    "unlimited-portfolios-description": "Crie quantos portfólios você quiser e gerencie suas negociações em um só lugar",
+    "premium-storage": "10 GB de Armazenamento de Imagens",
+    "premium-storage-description": "Faça upload de imagens para suas negociações",
+    "ai-insights": "Previsões de IA",
+    "ai-insights-description": "AI insights para melhorar seu desempenho com base em negociações anteriores",
+    "most-popular": "Mais Popular",
+    "monthly": "Mensal",
+    "annually": "Anual"
   }
 }

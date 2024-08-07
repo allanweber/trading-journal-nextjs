@@ -15,6 +15,10 @@ const EnvSchema = z.object({
   GOOGLE_CLIENT_ID: z.string(),
   GOOGLE_CLIENT_SECRET: z.string(),
   BCC_EMAIL: z.string(),
+  STRIPE_SECRET_KEY: z.string(),
+  STRIPE_WEBHOOK_SECRET: z.string(),
+  STRIPE_ESSENTIALS_PRODUCT_ID: z.string(),
+  STRIPE_PREMIUM_PRODUCT_ID: z.string(),
 });
 
 export type EnvSchema = z.infer<typeof EnvSchema>;

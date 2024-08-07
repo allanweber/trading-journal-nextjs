@@ -36,7 +36,7 @@ export function GeneralForm({
   initialValues: GeneralFormValues;
 }) {
   const { isPending, execute, error } = useServerAction(update);
-  const t = useTranslations('appearance');
+  const t = useTranslations('appearance-form');
   const { setTheme } = useTheme();
   const { locale, setLocale } = useSetLocale();
 

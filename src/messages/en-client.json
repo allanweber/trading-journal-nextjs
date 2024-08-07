@@ -39,7 +39,10 @@
     "dashboard": "Dashboard",
     "settings": "Settings",
     "appearance": "Appearance",
-    "account": "Account"
+    "account": "Account",
+    "billing": "Billing",
+    "checkout": "Checkout",
+    "subscription": "Subscription"
   },
   "email": "Email",
   "password": "Password",
@@ -47,7 +50,7 @@
   "continue": "Continue",
   "please-wait": "Please wait...",
   "forgot-password-email-sent": "An email has been sent to reset your password",
-  "account": {
+  "account-form": {
     "success": "Profile updated successfully",
     "display-name": "Display Name",
     "display-description": "This is your public display name. It can be your real name or a pseudonym.",
@@ -57,7 +60,7 @@
     "bio-description": "Tell us a little about yourself",
     "save": "Update Profile"
   },
-  "appearance": {
+  "appearance-form": {
     "language": "Language",
     "language-description": "Select your preferred language",
     "english": "English",
@@ -79,5 +82,49 @@
     "message": "Message",
     "message-description": "What would you like to tell us?",
     "send": "Send Message"
+  },
+  "subscription-plans": {
+    "title": "Your Current Plan",
+    "description": "You are currently on the {plan} plan.",
+    "essentials": "Essentials",
+    "premium": "Premium",
+    "subscribe-now": "Subscribe Now",
+    "manage": "Manage your Subscription",
+    "upgrade": "Upgrade to {plan}",
+    "month": "per month",
+    "year": "per year",
+    "free-title": "Free",
+    "free-description": "Our free plan includes basic features and is perfect for a beginner.",
+    "essential-title": "Essential",
+    "essential-description": "You are ready to take your trading to the next level.",
+    "premium-title": "Premium",
+    "premium-description": "You are a professional trader and need the best tools to help you succeed.",
+    "free-portfolio": "1 Portfolio",
+    "free-portfolio-description": "Create and manage your trades in one place",
+    "free-storage": "500 MB Image Storage",
+    "free-storage-description": "Upload images to your trades",
+    "many-trades": "As many Trades as you want",
+    "many-trades-description": "Unlimited trades for any market or currency",
+    "email-support": "Email Support",
+    "email-support-description": "Get help with your account or any questions you may have",
+    "essentials-portfolio": "5 Portfolios",
+    "essentials-portfolio-description": "Create multiple portfolios and manage your trades in one place",
+    "essentials-storage": "5 GB Image Storage",
+    "essentials-storage-description": "Upload images to your trades",
+    "custom-dashboards": "Custom Dashboards",
+    "custom-dashboards-description": "Create custom dashboards with the metrics that matter to you",
+    "priority-support": "Priority support",
+    "priority-support-description": "Get help with your account or any questions you may have",
+    "all-essentials-features": "All Essential Features",
+    "all-essentials-features-description": "Get access to all features and unlimited trades for a low monthly fee.",
+    "unlimited-portfolios": "Unlimited Portfolios",
+    "unlimited-portfolios-description": "Create unlimited portfolios and manage your trades in one place",
+    "premium-storage": "10 GB Image Storage",
+    "premium-storage-description": "Upload images to your trades",
+    "ai-insights": "AI Predictions",
+    "ai-insights-description": "Get insights and suggestions to improve your trading performance based on your previous trades",
+    "most-popular": "Most Popular",
+    "monthly": "Monthly",
+    "annually": "Annually"
   }
 }
