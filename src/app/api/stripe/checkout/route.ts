@@ -15,19 +15,27 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  const plan = request.nextUrl.searchParams.get('plan');
+  const priceId = request.nextUrl.searchParams.get('price');
   const locale = request.nextUrl.searchParams.get('locale') ?? 'en';
 
-  if (!plan) {
-    return NextResponse.json({ error: 'Plan not found' }, { status: 400 });
+  if (!priceId) {
+    return NextResponse.json({ error: 'priceId not found' }, { status: 400 });
+  }
+
+  if (!locale) {
+    return NextResponse.json({ error: 'locale not found' }, { status: 400 });
   }
 
   const prices = await stripe.prices.list({
-    lookup_keys: [`${plan}-monthly-${locale}`],
     expand: ['data.product'],
   });
 
   if (prices.data.length === 0) {
+    return NextResponse.json({ error: 'Price not found' }, { status: 400 });
+  }
+
+  const price = prices.data.find((price) => price.id === priceId);
+  if (!price) {
     return NextResponse.json({ error: 'Price not found' }, { status: 400 });
   }
 
@@ -43,7 +51,7 @@ export async function GET(request: NextRequest) {
     customer_email: user.email,
     line_items: [
       {
-        price: prices.data[0].id,
+        price: priceId,
         quantity: 1,
       },
     ],

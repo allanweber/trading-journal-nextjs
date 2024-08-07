@@ -15,6 +15,7 @@ export interface Feature {
 }
 
 export interface Price {
+  priceId: string;
   currency: string;
   unitAmount: number;
   interval: 'month' | 'year';

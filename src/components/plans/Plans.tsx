@@ -93,9 +93,18 @@ export default function Plans({
             </CardHeader>
             <CardContent>
               <Button className="w-full" asChild>
-                <Link href={user ? '/app/subscribe' : '/auth/sign-up'}>
-                  {t('subscribe-now')}
-                </Link>
+                {user ? (
+                  <Link
+                    href={{
+                      pathname: '/api/stripe/checkout',
+                      query: { locale, price: plan.prices[0]?.priceId },
+                    }}
+                  >
+                    {t('subscribe-now')}
+                  </Link>
+                ) : (
+                  <Link href="/auth/sign-up">{t('subscribe-now')}</Link>
+                )}
               </Button>
             </CardContent>
 
@@ -103,8 +112,10 @@ export default function Plans({
             <CardFooter className="flex">
               <div className="grid gap-4">
                 {plan.features.map((feature: Feature) => (
-                  <div key={feature.title} className="flex items-center gap-4">
-                    <CheckIcon className="w-6 h-6 text-primary" />
+                  <div key={feature.title} className="flex items-center gap-2">
+                    <div>
+                      <CheckIcon className="text-primary" />
+                    </div>
                     <div>
                       <h3 className="font-medium">{t(feature.title)}</h3>
                       <p className="text-muted-foreground text-xs">

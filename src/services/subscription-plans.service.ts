@@ -22,7 +22,6 @@ export async function retrievePlans(locale: string): Promise<Plan[]> {
   const prices = await stripe.prices.list({
     expand: ['data.product'],
   });
-
   const plans = prices.data
     .filter((price) =>
       product_ids.includes((price.product as Stripe.Product).id)

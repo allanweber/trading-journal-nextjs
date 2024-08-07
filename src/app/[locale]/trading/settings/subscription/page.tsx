@@ -4,7 +4,7 @@ import { validateRequest } from '@/lib/auth';
 import { Feature } from '@/lib/subscriptions-tables';
 import { retrievePlans } from '@/services/subscription-plans.service';
 import { retrieveSubscription } from '@/services/user-subscription.service';
-import { ArrowRightIcon, CheckIcon } from 'lucide-react';
+import { CheckIcon } from 'lucide-react';
 import { getLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
@@ -24,27 +24,17 @@ export default async function Page() {
     return plan.id !== 'free';
   });
 
-  if (subscription.free) {
+  if (subscription.free || subscription.expired) {
     return (
       <div className="space-y-6">
-        <div className="px-4 md:px-6 lg:px-8">
+        <div className="px-4 md:px-6 lg:px-8 space-y-6">
           <div className="text-center space-y-2">
-            <h1 className="text-3xl md:text-4xl font-bold">{t('free-call')}</h1>
+            <h1 className="text-3xl md:text-4xl font-bold">
+              {subscription.expired ? t('expired-call') : t('free-call')}
+            </h1>
             <p className="text-muted-foreground text-lg md:text-xl">
               {t('free-action')}
             </p>
-          </div>
-          <div>
-            <Button asChild variant="outline">
-              <Link
-                href={{
-                  pathname: '/api/stripe/checkout',
-                  query: { locale, plan: 'essential' },
-                }}
-              >
-                Checkout
-              </Link>
-            </Button>
           </div>
           <Plans user={user} plans={plans} />
         </div>
@@ -85,7 +75,7 @@ export default async function Page() {
             <div className="text-center space-y-2">
               <div className="text-4xl md:text-5xl font-bold">{priceLabel}</div>
               <p className="text-muted-foreground text-sm">
-                {subscription.plan.interval === 'year' ? t('year') : t('month')}
+                {subscription.interval === 'year' ? t('year') : t('month')}
               </p>
             </div>
             <div className="space-y-4">
@@ -98,14 +88,6 @@ export default async function Page() {
                   {t('manage')}
                 </Link>
               </Button>
-              <Link
-                href="#"
-                className="inline-flex items-center justify-center gap-2 text-sm font-medium text-primary hover:underline"
-                prefetch={false}
-              >
-                {t('upgrade', { plan: t('premium') })}
-                <ArrowRightIcon className="w-4 h-4" />
-              </Link>
             </div>
           </div>
         </div>

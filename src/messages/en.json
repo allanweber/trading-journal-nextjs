@@ -145,6 +145,7 @@
     "month": "per month",
     "year": "per year",
     "free-call": "You are using a Free Plan",
+    "expired-call": "Your subscription has expired",
     "free-action": "Get started with one of the paid plans to unlock more features."
   }
 }

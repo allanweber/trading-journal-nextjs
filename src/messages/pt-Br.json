@@ -144,6 +144,7 @@
     "month": "por mês",
     "year": "por ano",
     "free-call": "Você esta usando o plano gratuito.",
-    "free-action": "Get started with one of the paid plans to unlock more features."
+    "expired-call": "Seu plano expirou.",
+    "free-action": "Comece com um dos planos pagos para desbloquear mais recursos."
   }
 }

@@ -67,7 +67,13 @@ export async function POST(request: Request) {
   if (event.type === 'customer.subscription.updated') {
     const subscription = event.data.object as Stripe.Subscription;
 
-    console.log('subscription updated', subscription);
+    const planUpdate: PlanUpdate = {
+      stripeCustomerId: subscription.customer as string,
+      stripePriceId: subscription.items.data[0].price.id,
+      stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000),
+    };
+
+    await updateUserPlan(planUpdate);
   }
 
   return new Response(null, { status: 200 });
