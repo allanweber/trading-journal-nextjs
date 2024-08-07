@@ -1,7 +1,7 @@
 import { validateRequest } from '@/lib/auth';
 import { constants } from '@/lib/config';
+import { absoluteUrl } from '@/lib/server-utils';
 import { stripe } from '@/lib/stripe';
-import { absoluteUrl } from '@/lib/utils';
 import { retrieveSubscription } from '@/services/user-subscription.service';
 import { NextRequest } from 'next/server';
 

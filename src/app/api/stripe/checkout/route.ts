@@ -1,7 +1,7 @@
 import { validateRequest } from '@/lib/auth';
 import { constants } from '@/lib/config';
+import { absoluteUrl } from '@/lib/server-utils';
 import { stripe } from '@/lib/stripe';
-import { absoluteUrl } from '@/lib/utils';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
