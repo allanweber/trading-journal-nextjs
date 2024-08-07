@@ -1,6 +1,4 @@
 import env from '@/env';
-import { validateRequest } from '@/lib/auth';
-import { constants } from '@/lib/config';
 import { stripe } from '@/lib/stripe';
 import {
   PlanUpdate,
@@ -10,15 +8,6 @@ import { headers } from 'next/headers';
 import Stripe from 'stripe';
 
 export async function POST(request: Request) {
-  const { user } = await validateRequest();
-  if (!user) {
-    return new Response(null, {
-      status: 302,
-      headers: {
-        Location: constants.APP_SIGNIN_PAGE,
-      },
-    });
-  }
   const body = await request.text();
   const signature = headers().get('Stripe-Signature') ?? '';
 
