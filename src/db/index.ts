@@ -8,7 +8,10 @@ export const client = createClient({
   authToken: env.DATABASE_AUTH_TOKEN!,
 });
 
-export const db = drizzle(client, { schema, logger: true });
+export const db = drizzle(client, {
+  schema,
+  logger: env.NODE_ENV === 'development',
+});
 
 export type db = typeof db;
 
