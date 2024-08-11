@@ -13,7 +13,6 @@
     "db:seed": "cross-env DB_SEEDING=true tsx src/db/seed.ts",
     "postinstall": "npm run db:migrate",
     "stripe:listen": "stripe listen --forward-to localhost:3000/api/stripe/webhook",
-    "po"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
