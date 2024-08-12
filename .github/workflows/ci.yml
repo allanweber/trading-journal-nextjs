@@ -1,54 +1,54 @@
-# name: Application CI
+name: Application CI
 
-# on:
-#   push:
-#     branches: [main]
-#   pull_request:
-#     branches: [main]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
-# env:
-#   APP_NAME: trading-journal
+env:
+  APP_NAME: trading-journal
 
-# jobs:
-#   #   test:
-#   #     runs-on: ubuntu-latest
-#   #     outputs:
-#   #       app-version: ${{ steps.build-version.outputs.APP_VERSION }}
-#   #     steps:
-#   #       - uses: actions/checkout@v4
-#   #       - name: Use Node.js
-#   #         uses: actions/setup-node@v3
-#   #         with:
-#   #           node-version: '21.x'
-#   #       - run: |
-#   #           echo "APP_VERSION=$(grep -m1 version package.json | awk -F: '{ print $2 }' | sed 's/[", ]//g')" >> "$GITHUB_OUTPUT"
-#   #         id: build-version
-#   #       - run: |
-#   #           touch .env
-#   #           echo DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres >> .env
-#   #           cat .env
-#   #       - name: Start containers
-#   #         run: docker-compose -f "docker/docker-compose.yml" up -d
-#   #       - run: npm install
-#   #       - run: npm run test:all
-#   #       - name: Stop containers
-#   #         if: always()
-#   #         run: docker-compose -f "docker/docker-compose.yml" down
+jobs:
+  #   test:
+  #     runs-on: ubuntu-latest
+  #     outputs:
+  #       app-version: ${{ steps.build-version.outputs.APP_VERSION }}
+  #     steps:
+  #       - uses: actions/checkout@v4
+  #       - name: Use Node.js
+  #         uses: actions/setup-node@v3
+  #         with:
+  #           node-version: '21.x'
+  #       - run: |
+  #           echo "APP_VERSION=$(grep -m1 version package.json | awk -F: '{ print $2 }' | sed 's/[", ]//g')" >> "$GITHUB_OUTPUT"
+  #         id: build-version
+  #       - run: |
+  #           touch .env
+  #           echo DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres >> .env
+  #           cat .env
+  #       - name: Start containers
+  #         run: docker-compose -f "docker/docker-compose.yml" up -d
+  #       - run: npm install
+  #       - run: npm run test:all
+  #       - name: Stop containers
+  #         if: always()
+  #         run: docker-compose -f "docker/docker-compose.yml" down
 
-#   release:
-#     # needs: test
-#     if: github.ref == 'refs/heads/main'
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
-#       - name: Use Node.js
-#         uses: actions/setup-node@v3
-#         with:
-#           node-version: '21.x'
-#       - run: npm install
-#       - run: |
-#           touch .env
-#           echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
-#           echo DATABASE_AUTH_TOKEN=${{ secrets.DATABASE_AUTH_TOKEN }} >> .env
-#           cat .env
-#       - run: npm run db:migrate
+  release:
+    # needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '21.x'
+      - run: npm install
+      - run: |
+          touch .env
+          echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
+          echo DATABASE_AUTH_TOKEN=${{ secrets.DATABASE_AUTH_TOKEN }} >> .env
+          cat .env
+      - run: npm run db:migrate
