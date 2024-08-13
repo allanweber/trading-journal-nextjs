@@ -27,7 +27,15 @@
     "name-required": "Nome é obrigatório",
     "min-3": "Deve ter pelo menos 3 caracteres",
     "message-required": "Mensagem é obrigatória",
-    "min-10": "Deve ter pelo menos 10 caracteres"
+    "min-10": "Deve ter pelo menos 10 caracteres",
+    "SOMETHING-WRONG": "Algo deu errado",
+    "TOO_MANY_REQUESTS": "Muitas requisições, tente novamente mais tarde",
+    "NOT_AUTHORIZED": "Email ou senha inválidos",
+    "UNAUTHORIZED": "Acesso não autorizado",
+    "EXISTING_USER_NAME": "Email já existe",
+    "EMAIL_NOT_VERIFIED": "Email não verificado",
+    "USER_NOT_FOUND": "Usuário não encontrado",
+    "INVALID-TOKEN": "O token fornecido é inválido ou expirou."
   },
   "search": {
     "search": "Buscar",
